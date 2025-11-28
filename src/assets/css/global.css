@@ -30,7 +30,13 @@
 body {
   background: var(--bg-color);
   font-family: "Inter", sans-serif;
+  cursor: url('/penis.png'), auto;
 }
+
+* {
+  cursor: url('/penis.png'), auto !important;
+}
+
 .container {
   margin: 0 auto;
   width: 100%;
