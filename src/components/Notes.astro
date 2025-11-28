@@ -1,0 +1,267 @@
+---
+
+---
+
+<div class="notes-widget">
+  <button class="notes-widget-btn" data-notes-btn>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+      ></path>
+      <polyline points="14 2 14 8 20 8"></polyline>
+      <line x1="16" y1="13" x2="8" y2="13"></line>
+      <line x1="16" y1="17" x2="8" y2="17"></line>
+      <polyline points="10 9 9 9 8 9"></polyline>
+    </svg>
+  </button>
+
+  <div class="notes-dropdown" data-notes-dropdown>
+    <div class="notes-container">
+      <div class="notes-header">
+        <h3 class="notes-title">Заметки. Хз зачем, но пусть будет</h3>
+      </div>
+      <div class="notes-content">
+        <textarea
+          id="notes-textarea"
+          class="notes-textarea"
+          placeholder="Начните писать..."
+          rows="10"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  .notes-widget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notes-widget-btn {
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 50%;
+    background: var(--theme-bg-hard, #1e1e1e);
+    border: 1px solid var(--theme-border, #2d2d2d);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .notes-widget-btn svg {
+    width: 1.75vw;
+    height: 1.75vw;
+    transition: all 0.3s;
+  }
+
+  .notes-widget-btn:hover {
+    background: var(--theme-accent-softer, #3d3d3d);
+    border-color: var(--theme-accent-softer, #3d3d3d);
+    transform: scale(1.1);
+  }
+
+  .notes-dropdown {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 100px;;
+    transform: translateY(-50%);
+    z-index: 1001;
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border, #2d2d2d);
+    background: var(--theme-bg-hard, #1e1e1e);
+    padding: 0;
+    min-width: 400px;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transition:
+      translate 0.3s,
+      opacity 0.3s,
+      scale 0.3s,
+      visibility 0.3s;
+    translate: 10px -50%;
+    transform-origin: right center;
+    opacity: 0;
+    scale: 0.8;
+    visibility: hidden;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .notes-dropdown--active {
+    translate: 0 -50%;
+    opacity: 1;
+    scale: 1;
+    visibility: visible;
+  }
+
+  .notes-container {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notes-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2d2d2d;
+  }
+
+  .notes-title {
+    color: #e0e0e0;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .notes-content {
+    position: relative;
+  }
+
+  .notes-textarea {
+    width: 100%;
+    min-height: 300px;
+    max-height: 500px;
+    background: #1e1e1e;
+    color: #e0e0e0;
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+  }
+
+  .notes-textarea::placeholder {
+    color: #6b6b6b;
+  }
+
+  .notes-textarea:focus {
+    outline: none;
+  }
+
+  .notes-textarea::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .notes-textarea::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+
+  .notes-textarea::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+    border-radius: 4px;
+  }
+
+  .notes-textarea::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = "aroken_notes";
+
+  function initNotes() {
+    const btn = document.querySelector("[data-notes-btn]");
+    const dropdown = document.querySelector("[data-notes-dropdown]");
+    const textarea = document.getElementById("notes-textarea");
+
+    if (!btn || !dropdown) return;
+
+    // Закрытие всех других dropdown
+    function closeOtherDropdowns() {
+      const otherDropdowns = document.querySelectorAll(
+        "[data-claude-dropdown], [data-binary-dropdown], [data-letter-dropdown]",
+      );
+      otherDropdowns.forEach((otherDropdown) => {
+        otherDropdown.classList.remove("claude-dropdown--active");
+        otherDropdown.classList.remove("binary-dropdown--active");
+      });
+    }
+
+    // Переключение dropdown
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = dropdown.classList.contains("notes-dropdown--active");
+      closeOtherDropdowns();
+      if (isActive) {
+        dropdown.classList.remove("notes-dropdown--active");
+      } else {
+        dropdown.classList.add("notes-dropdown--active");
+      }
+    });
+
+    // Закрытие при клике вне
+    document.addEventListener("click", (e) => {
+      if (
+        !dropdown.contains(e.target as Node) &&
+        !btn.contains(e.target as Node)
+      ) {
+        dropdown.classList.remove("notes-dropdown--active");
+      }
+    });
+
+    // Загрузка из localStorage
+    function loadNotes() {
+      if (typeof localStorage !== "undefined" && textarea) {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && textarea instanceof HTMLTextAreaElement) {
+          textarea.value = saved;
+        }
+      }
+    }
+
+    // Сохранение в localStorage
+    function saveNotes() {
+      if (
+        typeof localStorage !== "undefined" &&
+        textarea &&
+        textarea instanceof HTMLTextAreaElement
+      ) {
+        localStorage.setItem(STORAGE_KEY, textarea.value);
+      }
+    }
+
+    // Инициализация textarea
+    if (textarea) {
+      loadNotes();
+
+      // Автосохранение при вводе
+      textarea.addEventListener("input", saveNotes);
+
+      // Сохранение при потере фокуса
+      textarea.addEventListener("blur", saveNotes);
+    }
+  }
+
+  // Инициализация при загрузке
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNotes);
+  } else {
+    initNotes();
+  }
+
+  // Переинициализация после навигации с ViewTransitions
+  document.addEventListener("astro:page-load", initNotes);
+</script>

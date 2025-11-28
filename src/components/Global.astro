@@ -1,0 +1,26 @@
+---
+import Notes from "./Notes.astro"
+import ClaudeHint from "./ClaudeHint.astro"
+import BinaryConverter from "./BinaryConverter.astro"
+import LetterGame from "./LetterGame.astro"
+---
+
+<div class="widget-container">
+  <ClaudeHint />
+  <!-- <Notes /> -->
+  <BinaryConverter />
+  <LetterGame />
+</div>
+
+<style>
+  .widget-container {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+</style>

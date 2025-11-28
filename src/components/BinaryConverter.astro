@@ -1,0 +1,324 @@
+---
+
+---
+
+<div class="binary-widget">
+  <button class="binary-widget-btn" data-binary-btn>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+      <line x1="8" y1="21" x2="16" y2="21"></line>
+      <line x1="12" y1="17" x2="12" y2="21"></line>
+    </svg>
+  </button>
+
+  <div class="binary-dropdown" data-binary-dropdown>
+    <div class="binary-container">
+      <div class="binary-header">
+        <h3 class="binary-title">Конвертер двоичного кода</h3>
+      </div>
+      <div class="binary-content">
+        <div class="binary-input-group">
+          <label for="binary-input" class="binary-label">Двоичный код:</label>
+          <textarea
+            id="binary-input"
+            class="binary-textarea"
+            placeholder="Введите двоичный код"
+            rows="4"></textarea>
+        </div>
+        <div class="binary-output-group">
+          <label for="binary-output" class="binary-label">Результат:</label>
+          <textarea
+            id="binary-output"
+            class="binary-textarea binary-textarea-output"
+            placeholder="Здесь появится результат..."
+            rows="4"
+            readonly></textarea>
+        </div>
+        <button class="binary-convert-btn" id="binary-convert-btn">
+          Конвертировать
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  .binary-widget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .binary-widget-btn {
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 50%;
+    background: var(--theme-bg-hard, #1e1e1e);
+    border: 1px solid var(--theme-border, #2d2d2d);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .binary-widget-btn svg {
+    width: 1.75vw;
+    height: 1.75vw;
+    transition: all 0.3s;
+  }
+
+  .binary-widget-btn:hover {
+    background: var(--theme-accent-softer, #3d3d3d);
+    border-color: var(--theme-accent-softer, #3d3d3d);
+    transform: scale(1.1);
+  }
+
+  .binary-dropdown {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 100px;;
+    transform: translateY(-50%);
+    z-index: 1001;
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border, #2d2d2d);
+    background: var(--theme-bg-hard, #1e1e1e);
+    padding: 0;
+    min-width: 400px;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transition:
+      translate 0.3s,
+      opacity 0.3s,
+      scale 0.3s,
+      visibility 0.3s;
+    translate: 10px -50%;
+    transform-origin: right center;
+    opacity: 0;
+    scale: 0.8;
+    visibility: hidden;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .binary-dropdown--active {
+    translate: 0 -50%;
+    opacity: 1;
+    scale: 1;
+    visibility: visible;
+  }
+
+  .binary-container {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .binary-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2d2d2d;
+  }
+
+  .binary-title {
+    color: #e0e0e0;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .binary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .binary-input-group,
+  .binary-output-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .binary-label {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 500;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .binary-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: #252525;
+    color: #e0e0e0;
+    border: 1px solid #3d3d3d;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: "Courier New", monospace;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+  }
+
+  .binary-textarea:focus {
+    border-color: #4a9eff;
+  }
+
+  .binary-textarea::placeholder {
+    color: #6b6b6b;
+  }
+
+  .binary-textarea-output {
+    background: #1a1a1a;
+    cursor: default;
+  }
+
+  .binary-convert-btn {
+    padding: 12px 20px;
+    background: #4a9eff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .binary-convert-btn:hover {
+    background: #3a8eef;
+    transform: translateY(-2px);
+  }
+
+  .binary-convert-btn:active {
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  function initBinaryConverter() {
+    const btn = document.querySelector("[data-binary-btn]");
+    const dropdown = document.querySelector("[data-binary-dropdown]");
+    const input = document.getElementById("binary-input");
+    const output = document.getElementById("binary-output");
+    const convertBtn = document.getElementById("binary-convert-btn");
+
+    if (!btn || !dropdown || !input || !output || !convertBtn) return;
+
+    // Закрытие всех других dropdown
+    function closeOtherDropdowns() {
+      const otherDropdowns = document.querySelectorAll(
+        "[data-notes-dropdown], [data-claude-dropdown], [data-letter-dropdown]",
+      );
+      otherDropdowns.forEach((otherDropdown) => {
+        otherDropdown.classList.remove("notes-dropdown--active");
+        otherDropdown.classList.remove("claude-dropdown--active");
+      });
+    }
+
+    // Переключение dropdown
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = dropdown.classList.contains("binary-dropdown--active");
+      closeOtherDropdowns();
+      if (isActive) {
+        dropdown.classList.remove("binary-dropdown--active");
+      } else {
+        dropdown.classList.add("binary-dropdown--active");
+      }
+    });
+
+    // Закрытие при клике вне
+    document.addEventListener("click", (e) => {
+      if (
+        !dropdown.contains(e.target as Node) &&
+        !btn.contains(e.target as Node)
+      ) {
+        dropdown.classList.remove("binary-dropdown--active");
+      }
+    });
+
+    // Функция конвертации двоичного кода в текст
+    function binaryToText(binary: string): string {
+      // Удаляем все пробелы и разделители
+      const cleanBinary = binary.replace(/\s+/g, "");
+
+      // Проверяем, что строка содержит только 0 и 1
+      if (!/^[01]+$/.test(cleanBinary)) {
+        return "Ошибка: введите только 0 и 1";
+      }
+
+      // Разбиваем на байты (8 бит)
+      const bytes: string[] = [];
+      for (let i = 0; i < cleanBinary.length; i += 8) {
+        bytes.push(cleanBinary.slice(i, i + 8));
+      }
+
+      // Конвертируем каждый байт в символ
+      let result = "";
+      for (const byte of bytes) {
+        if (byte.length === 8) {
+          const decimal = parseInt(byte, 2);
+          result += String.fromCharCode(decimal);
+        }
+      }
+
+      return result || "Результат пуст";
+    }
+
+    // Обработчик конвертации
+    function convert() {
+      if (
+        input instanceof HTMLTextAreaElement &&
+        output instanceof HTMLTextAreaElement
+      ) {
+        const binaryText = input.value;
+        const text = binaryToText(binaryText);
+        output.value = text;
+      }
+    }
+
+    // Обработчики событий
+    convertBtn.addEventListener("click", convert);
+
+    // Конвертация при нажатии Enter (Ctrl+Enter или Cmd+Enter)
+    if (input instanceof HTMLTextAreaElement) {
+      input.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+          e.preventDefault();
+          convert();
+        }
+      });
+    }
+  }
+
+  // Инициализация при загрузке
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBinaryConverter);
+  } else {
+    initBinaryConverter();
+  }
+
+  // Переинициализация после навигации с ViewTransitions
+  document.addEventListener("astro:page-load", initBinaryConverter);
+</script>

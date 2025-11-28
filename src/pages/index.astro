@@ -1,16 +1,50 @@
 ---
-
+import Aroken from "../components/Aroken.astro"
+import { Image } from "astro:assets"
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Aroken event</title>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <Aroken />
+    <a href="/platformAroken">New platform</a>
+    <a href="/learnAroken">Learn Aroken</a>
+
+    <button
+      id="test-aroken"
+      style="margin-top: 20px; padding: 10px 20px; cursor: pointer; background: #6366f1; color: white; border: none; border-radius: 5px;"
+    >
+      Trigger Aroken
+    </button>
+    <script>
+      import { triggerAroken } from "../utils/arokenState"
+
+      document.getElementById("test-aroken")?.addEventListener("click", () => {
+        triggerAroken()
+      })
+    </script>
+  </body>
 </html>
+
+<style scoped>
+  body {
+    background-color: #333;
+  }
+
+  .max {
+    width: 400px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.location.href = "/platformAroken"
+  })
+</script>

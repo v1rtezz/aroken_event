@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import ProgressImage from "../../assets/img/progress-bar.png";
+---
+
+<section class="stats">
+  <h3 class="title">Твой прогресс в обучении</h3>
+  <p class="text">Пройдено All / All уроков</p>
+  <Image src={ProgressImage} class="avatar" alt="Aroken avatar" />
+</section>
+<style scoped>
+  .title {
+    color: var(--theme-text-harder);
+    font-family: Evolventa, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .text {
+    color: var(--theme-text-softer);
+    font-size: 0.875rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .stats {
+    text-align: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border);
+    background: var(--theme-bg-hard);
+    padding: 2.5rem 1.25rem;
+    grid-column: 1 / -1;
+  }
+</style>

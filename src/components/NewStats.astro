@@ -1,0 +1,31 @@
+---
+import StatsProgress from "./stats/StatsProgress.astro"
+import StatsSkills from "./stats/StatsSkills.astro"
+import StatsAchivements from "./stats/StatsAchivements.astro"
+---
+
+<h1 class="title">Обучение по курсу «Профессия Веб-разработчик»</h1>
+<div class="stats">
+  <StatsProgress />
+  <StatsSkills />
+  <StatsAchivements />
+</div>
+
+<style scoped>
+  .title {
+    color: var(--theme-text-harder);
+    font-family: Evolventa, sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid grid-template-rows: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+    margin-bottom: 5rem;
+  }
+</style>

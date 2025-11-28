@@ -1,0 +1,224 @@
+---
+import "../assets/css/reset.css"
+import "../assets/css/global.css"
+import NewHeader from "../components/NewHeader.astro"
+import NewStats from "../components/NewStats.astro"
+import NewLessons from "../components/NewLessons.astro"
+import NewFooter from "../components/NewFooter.astro"
+import Global from "../components/Global.astro"
+import Aroken from "../components/Aroken.astro"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <title>Platform aroken.ru</title>
+  </head>
+  <body>
+    <div class="container">
+      <NewHeader />
+      <NewStats />
+      <NewLessons />
+      <Global />
+    </div>
+    <NewFooter />
+    <div class="speaker-overlay">
+      <Aroken />
+      <button data-speak-1>ПОГОВОРИТЬ С АРОКЕНОМ</button>
+      <p data-subtitles class="text"></p>
+    </div>
+  </body>
+</html>
+
+<style scoped>
+  @import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+  button {
+    font-family: "Courier Prime", monospace;
+    font-size: 34px;
+    font-weight: bold;
+    padding: 15px 40px;
+    background-color: var(--theme-accent-harder, #daf765);
+    color: #101010;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  button:hover {
+    background-color: #c9e955;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(218, 247, 101, 0.5);
+  }
+
+  button:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .speaker-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto 1fr;
+    place-content: center;
+    place-items: center;
+    gap: 30px;
+    transition: all 0.5s ease-in;
+  }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease-in;
+  }
+
+  .transparent {
+    background-color: transparent;
+  }
+
+  p[data-subtitles] {
+    grid-column: 1 / -1;
+    font-family: "Courier Prime", monospace;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    height: 150px; /* 3 lines * 36px + 40px padding ~= 148px */
+    width: 80%;
+    max-width: 800px;
+    box-sizing: border-box;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    text-align: left; /* Better for reading */
+    overflow: hidden;
+  }
+
+  p[data-subtitles]::after {
+    content: "|";
+    animation: blink 1s infinite;
+    margin-left: 2px;
+    color: var(--theme-accent-harder, #daf765);
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  import { triggerAroken } from "../utils/arokenState"
+
+  const speakerOverlay = document.querySelector(".speaker-overlay")
+  const arokenContainer = document.getElementById("aroken-container")
+  const subtitlesElement = document.querySelector("p[data-subtitles]")
+
+  if (arokenContainer) {
+    arokenContainer.classList.remove("hidden")
+  }
+
+  function typeWriter(text: string, duration: number) {
+    if (!subtitlesElement) return
+
+    subtitlesElement.textContent = ""
+    const totalChars = text.length
+    const interval = (duration - 100) / totalChars
+
+    let charIndex = 0
+    let wordsOnPage = 0
+
+    const timer = setInterval(() => {
+      if (charIndex < totalChars) {
+        const char = text.charAt(charIndex)
+
+        // Check if we are starting a new word (space or start)
+        if (char === " ") {
+          wordsOnPage++
+        }
+
+        // Check limits: 15 words OR visual overflow
+        // We check overflow AFTER adding, but we can also check word limit BEFORE
+        if (wordsOnPage >= 15) {
+          subtitlesElement.textContent = ""
+          wordsOnPage = 0
+          charIndex++ // Skip the space that triggered the new page
+          return
+        }
+
+        subtitlesElement.textContent += char
+
+        // Check visual overflow immediately after adding
+        if (subtitlesElement.scrollHeight > subtitlesElement.clientHeight) {
+          subtitlesElement.textContent = char
+          wordsOnPage = 0 // Reset word count for new page
+        }
+
+        charIndex++
+      } else {
+        clearInterval(timer)
+      }
+    }, interval)
+
+    return timer
+  }
+
+  const button = document.querySelector("button[data-speak-1]")
+  if (button) {
+    button.addEventListener("click", () => {
+      const text1 =
+        "Привет на связи Максим! В этой игре твоя задача найти 14 кодов, спрятанных в абсолютно разных местах карты. Лэтс гоу познакомимся с полигоном!"
+      const text2 =
+        "Сейчас ты возможно в легком шоке, но это действительно платформа арокен ру! Обрати внимание, что любые отличия с оригиналом, скорее всего, являются подсказкой. И да, сидеть проверять пиксель перфект тебе не нужно ахаха, отличия видны на глаз. Обрати внимания на кнопки справа. Первая из них это клод, если прям совсем жопа и не понимаешь куда копать, можешь обратиться туда. Следующая это конвертер кодов в буквы, он тебе очень пригодится. Сразу после конвертации кода жми на следующую кнопку и вводи букву. Сразу дам небольшую подсказку, почти все что здесь можно потыкать (а здесь много чего можно потыкать) скорее всего ведет к коду. Не смею продолжать оттягивать яйца за кота, приятной игры!"
+
+      triggerAroken({
+        audioPath: "/hello.wav",
+        duration: 11600,
+      })
+
+      typeWriter(text1, 11600)
+
+      button.classList.add("hidden")
+      setTimeout(() => {
+        speakerOverlay?.classList.add("transparent")
+        subtitlesElement?.classList.add("hidden")
+
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, 11400)
+
+      setTimeout(() => {
+        subtitlesElement?.classList.remove("hidden")
+        triggerAroken({
+          audioPath: "/introduction.wav",
+          duration: 52000,
+        })
+        typeWriter(text2, 52000)
+      }, 16600)
+
+      setTimeout(() => {
+        speakerOverlay?.classList.add("hidden")
+        subtitlesElement?.classList.add("hidden")
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, 68600)
+    })
+  }
+</script>

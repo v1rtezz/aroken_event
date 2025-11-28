@@ -1,0 +1,177 @@
+<section class="stats">
+  <h3 class="title">Твои скиллы</h3>
+  <div class="wrapper" data-wrapper>
+    <label for="html"
+      >HTML
+      <input
+        name="html"
+        type="range"
+        min="0"
+        max="100"
+        value="100"
+        class="input-range"
+        data-input-range
+      />
+    </label>
+
+    <label for="css"
+      >CSS
+      <input
+        name="css"
+        type="range"
+        min="0"
+        max="100"
+        value="100"
+        class="input-range"
+        data-input-range
+      />
+    </label>
+
+    <label for="js"
+      >JS
+      <input
+        name="js"
+        type="range"
+        min="0"
+        max="100"
+        value="100"
+        class="input-range"
+        data-input-range
+      />
+    </label>
+
+    <label for="soft"
+      >Soft skills
+      <input
+        name="soft"
+        type="range"
+        min="0"
+        max="100"
+        value="100"
+        class="input-range"
+        data-input-range
+      />
+    </label>
+
+    <label for="wordpress"
+      >Wordpress
+      <input
+        name="wordpress"
+        type="range"
+        min="0"
+        max="100"
+        value="100"
+        class="input-range"
+        data-input-range
+      />
+    </label>
+  </div>
+</section>
+<style scoped>
+  .title {
+    color: var(--theme-text-harder);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .stats {
+    text-align: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border);
+    background: var(--theme-bg-hard);
+    padding: 2.5rem 1.25rem;
+  }
+
+  .wrapper {
+    height: 40px;
+    display: flex;
+    gap: 0.625rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8125rem;
+    color: #fff;
+    font-weight: 500;
+    user-select: none;
+    cursor: auto;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 0.375rem;
+    border-radius: 99px;
+    background: var(--theme-accent-softer);
+  }
+
+  /* Ползунок в WebKit (Chrome, Safari, Edge) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0.375rem;
+    height: 0.875rem;
+    background: var(--theme-accent-softer);
+    border-radius: 0.125rem;
+  }
+
+  /* Ползунок в Firefox */
+  input[type="range"]::-moz-range-thumb {
+    appearance: none;
+    width: 0.375rem;
+    height: 0.875rem;
+    background: var(--theme-accent-softer);
+    border-radius: 0.125rem;
+  }
+</style>
+
+<script>
+  const inputs =
+    document.querySelectorAll<HTMLInputElement>("[data-input-range]")
+  const wrapper = document.querySelector<HTMLDivElement>("[data-wrapper]")
+
+  const check = () => {
+    if (!wrapper) {
+      return
+    }
+    const values: Record<string, number> = {
+      html: Number(
+        (document.querySelector('input[name="html"]') as HTMLInputElement)
+          ?.value
+      ),
+      css: Number(
+        (document.querySelector('input[name="css"]') as HTMLInputElement)?.value
+      ),
+      js: Number(
+        (document.querySelector('input[name="js"]') as HTMLInputElement)?.value
+      ),
+      soft: Number(
+        (document.querySelector('input[name="soft"]') as HTMLInputElement)
+          ?.value
+      ),
+      wordpress: Number(
+        (document.querySelector('input[name="wordpress"]') as HTMLInputElement)
+          ?.value
+      ),
+    }
+
+    if (
+      values.html === 100 &&
+      values.css === 100 &&
+      values.js === 0 &&
+      values.soft === 100 &&
+      values.wordpress === 0
+    ) {
+      wrapper.insertAdjacentHTML(
+        "afterend",
+        `<p style="color: var(--theme-text-harder);font-size: 1.125rem; font-weight: 700; line-height: 1.2; margin-top: 3rem;">01110010</p>`
+      )
+    }
+  }
+
+  inputs.forEach((inp) => inp.addEventListener("input", check))
+</script>

@@ -1,0 +1,255 @@
+---
+import { Image } from "astro:assets"
+import ArokenCostume from "../assets/img/aroken-cotume.png"
+---
+
+<div id="audio-consent" class="audio-consent hidden">
+  <div class="consent-content">
+    <h2 class="consent-title">🔊 Включить звук?</h2>
+    <p class="consent-text">
+      Этот сайт без звука – как дрочер без правой руки, в целом тебя никто не
+      спрашивает, но все таки дай разрешение
+    </p>
+    <div class="consent-buttons">
+      <button id="consent-btn" class="consent-btn consent-btn-allow"
+        >Разрешить звук</button
+      >
+      <button id="decline-btn" class="consent-btn consent-btn-decline"
+        >Без звука</button
+      >
+    </div>
+  </div>
+  <Image src={ArokenCostume} alt="Aroken Costume" class="consent-image" />
+</div>
+
+<script>
+  const CONSENT_KEY = "aroken-audio-consent"
+  const consentModal = document.getElementById("audio-consent")
+  const consentBtn = document.getElementById("consent-btn")
+  const declineBtn = document.getElementById("decline-btn")
+
+  // Check if user already gave consent
+  const hasConsent = localStorage.getItem(CONSENT_KEY)
+
+  if (!hasConsent) {
+    // Show modal after a short delay
+    setTimeout(() => {
+      consentModal?.classList.remove("hidden")
+    }, 1000)
+  } else {
+    // User already consented, unlock audio context
+    unlockAudio()
+  }
+
+  consentBtn?.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "true")
+    consentModal?.classList.add("hidden")
+    unlockAudio()
+  })
+
+  // Runaway button logic - INFINITE EDITION
+  let escapeCount = 0
+  const trollMessages = [
+    "Не-а 😏",
+    "Сосал?",
+    "Заебешь давай разрешай)",
+    "Попробуй еще!",
+    "Почти! 🤪",
+    "Ни за что!",
+    "Неееет 🙅",
+    "Упс! 😅",
+    "Мимо!",
+    "Включай звук! 🔊",
+    "Не получится! 😎",
+  ]
+
+  declineBtn?.addEventListener("mouseenter", () => {
+    if (declineBtn) {
+      escapeCount++
+
+      // Get button dimensions
+      const btnRect = declineBtn.getBoundingClientRect()
+
+      // Calculate random position within viewport
+      const maxX = window.innerWidth - btnRect.width - 40
+      const maxY = window.innerHeight - btnRect.height - 40
+
+      const randomX = Math.random() * maxX + 20
+      const randomY = Math.random() * maxY + 20
+
+      // Apply position with animation
+      declineBtn.style.position = "fixed"
+      declineBtn.style.left = randomX + "px"
+      declineBtn.style.top = randomY + "px"
+      declineBtn.style.zIndex = "10001"
+
+      // Add shake animation
+      declineBtn.classList.add("shake-troll")
+      setTimeout(() => {
+        declineBtn?.classList.remove("shake-troll")
+      }, 500)
+
+      // Cycle through troll messages
+      const messageIndex = escapeCount % trollMessages.length
+      declineBtn.textContent = trollMessages[messageIndex]
+    }
+  })
+
+  declineBtn?.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "false")
+    consentModal?.classList.add("hidden")
+  })
+
+  // Unlock audio context by playing a silent sound
+  function unlockAudio() {
+    const silentAudio = new Audio()
+    silentAudio.src =
+      "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA"
+    silentAudio.play().catch(() => {})
+  }
+
+  // Export consent checker
+  ;(window as any).hasAudioConsent = () => {
+    return localStorage.getItem(CONSENT_KEY) === "true"
+  }
+</script>
+
+<style>
+  .audio-consent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(16, 16, 16, 0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10000;
+    transition: opacity 0.3s ease;
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .consent-content {
+    background: #191b20;
+    border: 1px solid #2d2d2d;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .consent-image {
+    width: 400px;
+    height: 450px;
+    object-fit: fill;
+    border-radius: 8px;
+  }
+
+  .consent-title {
+    margin: 0 0 15px 0;
+    font-size: 28px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: #e0e0e0;
+  }
+
+  .consent-text {
+    margin: 0 0 30px 0;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    color: #b0b0b0;
+    line-height: 1.5;
+  }
+
+  .consent-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .consent-btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .consent-btn-allow {
+    background: #daf765;
+    color: #101010;
+  }
+
+  .consent-btn-allow:hover {
+    background: #c9e955;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(218, 247, 101, 0.4);
+  }
+
+  .consent-btn-decline {
+    background: transparent;
+    color: #b0b0b0;
+    border: 2px solid #3d3d3d;
+    transition: all 0.15s ease;
+  }
+
+  .consent-btn-decline:hover {
+    background: #252525;
+    border-color: #5d5d5d;
+    color: #e0e0e0;
+  }
+
+  /* Troll shake animation */
+  @keyframes shake-troll {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(-5deg) scale(1.1);
+    }
+    20% {
+      transform: rotate(5deg) scale(1.1);
+    }
+    30% {
+      transform: rotate(-5deg) scale(1.1);
+    }
+    40% {
+      transform: rotate(5deg) scale(1.1);
+    }
+    50% {
+      transform: rotate(-5deg) scale(1.1);
+    }
+    60% {
+      transform: rotate(5deg) scale(1.1);
+    }
+    70% {
+      transform: rotate(-3deg) scale(1.05);
+    }
+    80% {
+      transform: rotate(3deg) scale(1.05);
+    }
+    90% {
+      transform: rotate(-2deg) scale(1.02);
+    }
+  }
+
+  .shake-troll {
+    animation: shake-troll 0.5s ease-in-out;
+  }
+</style>

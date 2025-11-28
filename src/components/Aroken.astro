@@ -1,0 +1,101 @@
+---
+import { Image } from "astro:assets"
+import ArokenPart1 from "../assets/img/aroken-part1.png"
+import ArokenPart2 from "../assets/img/aroken-part2.png"
+---
+
+<div id="aroken-container" class="aroken-container hidden">
+  <div class="aroken-head">
+    <Image src={ArokenPart1} alt="Aroken Part 1" />
+    <Image src={ArokenPart2} alt="Aroken Part 2" />
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById("aroken-container")
+
+  window.addEventListener("aroken-trigger", (e: Event) => {
+    if (!container) return
+
+    const customEvent = e as CustomEvent
+    const { audioPath = "/arokencore.wav", duration = 3000 } =
+      customEvent.detail || {}
+
+    container.classList.remove("hidden")
+    container.classList.add("animate")
+
+    // Play audio if path provided
+    // If hasAudioConsent is defined, check it. If not (component removed), assume true for manual triggers.
+    const hasConsent = (window as any).hasAudioConsent?.() ?? true
+    if (audioPath && hasConsent) {
+      const audio = new Audio(audioPath)
+      audio.currentTime = 0
+      audio.play().catch((err) => console.warn("Audio play failed:", err))
+    }
+
+    setTimeout(() => {
+      container.classList.remove("animate")
+      container.classList.add("hidden")
+    }, duration)
+  })
+</script>
+
+<style>
+  .aroken-container {
+    z-index: 9999;
+    pointer-events: none;
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .aroken-head {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @keyframes popUp {
+    0% {
+      transform: scale(0.7);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.7);
+      opacity: 0;
+    }
+  }
+
+  @keyframes talk {
+    0% {
+      gap: 0;
+    }
+    60% {
+      gap: 10px;
+    }
+    70% {
+      gap: 0;
+    }
+    100% {
+      gap: 0;
+    }
+  }
+
+  .animate .aroken-head {
+    animation: popUp 1s ease-in-out forwards;
+    animation: talk 0.5s ease-in-out infinite;
+  }
+
+  .aroken-head img {
+    width: 400px;
+    height: auto;
+  }
+</style>

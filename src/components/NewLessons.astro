@@ -1,0 +1,1478 @@
+---
+import HandIcon from "../assets/icons/hand.svg";
+import CardIcon from "../assets/icons/card.svg";
+import WatchIcon from "../assets/icons/watch.svg";
+import LessonItem from "./lessons/LessonItem.astro";
+---
+
+<div class="wrapper">
+  <div class="left">
+    <div class="timer">
+      <HandIcon width={33.6} height={40} />
+      <p class="timer-text">Обучение продлится до <br />01.10.0110</p>
+    </div>
+    <div class="lessons-wrapper">
+      <h3 class="heading acc-header">
+        <CardIcon class="learn-icon" width={24} height={24} />Обучение по курсу
+      </h3>
+      <div class="accordion">
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header> Вводный модуль</button>
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem lessonName="Приветствие" isDisabled={true} />
+              <LessonItem
+                lessonName="Как устроено обучение"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Первые строчки кода"
+                isPoshalka={"first"}
+                isDisabled={false}
+              />
+              <LessonItem
+                lessonName="Как браузер видит наш сайт"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Шаблон для домашних заданий"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Промежуточные итоги" isDisabled={true} />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header
+            >Модуль верстка (HTML/CSS/JS)</button
+          >
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem
+                lessonName="Организационные моменты"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Редактор кода" isDisabled={true} />
+              <LessonItem
+                lessonName="Три столпа любого сайта - HTML, CSS, JS"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Знакомство с HTML" isDisabled={true} />
+              <LessonItem lessonName="Синтаксис HTML" isDisabled={true} />
+              <LessonItem
+                lessonName="Блочные и строчные теги - div и span"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Синтаксис CSS" isDisabled={true} />
+              <LessonItem
+                lessonName="Презентация задания для отработки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Домашнее задание по предыдущему уроку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Валидность, семантика, доступность"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Презентация задания для отработки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Глобальная структура страницы"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Задание по глобальной структуре"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Домашнее задание по глобальной структуре"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Теги текстовых элементов - h1-h6, p, b, blockquote, address"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Теги для списков ul, ol"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Ссылки и кнопки a и button"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вставка изображений img"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Вставка видео video" isDisabled={true} />
+              <LessonItem
+                lessonName="Общие и полезные атрибуты - id, class, style"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Разбор задания для отработки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Презентация задания для отработки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Пути подключения, файл стилей"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Расширение LiveServer"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Знакомство с CSS" isDisabled={true} />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Селекторы" isDisabled={true} />
+              <LessonItem lessonName="Приоритет селекторов" isDisabled={true} />
+              <LessonItem
+                lessonName="Свойства редактирования шрифта и текста"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Ширина и высота width и height"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Внутренние отступы padding"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Внешние отступы margin"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Границы border" isDisabled={true} />
+              <LessonItem
+                lessonName="Тень для блоков - box-shadow"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Свойство отображения display"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Свойства видимости opacity, visibility + overflow"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Задание по общим свойствам"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Фон для элементов - background"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Flexbox номер один — Свойства для родителя"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Flexbox номер два — Свойства для элементов"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Flexbox номер три — Смена оси"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Flexbox номер четыре — Игра"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Обнуление стилей браузера — reset.css"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка учебного макета с преподавателем"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Презентация задания для отработки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Продвинутая вставка изображений picture"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Продвинутая вставка видео и аудио"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Таблицы — table, th, tr, td, caption, thead, tbody, tfoot"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Формы — form, label, input, select, textarea, fieldset, legend"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Возможности тэга input"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Методология БЭМ" isDisabled={true} />
+              <LessonItem lessonName="Задание по БЭМ" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Единицы измерения PX, %, VH, VW, EM, REM"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Подключение шрифтов @font-face"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Позиционирование элементов position"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Трансформации элементов transform"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Псевдоклассы hover, active, focus, first-child, last-child, nth-child(n)"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Псевдоэлементы before и after"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Плавные переходы transition"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Анимации animation" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Grid номер один — Инициализация"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Grid номер два — Позиционирование"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Grid номер три — Неявная сетка"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Grid номер четыре — Выравнивание"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Grid номер пять — Свойства элементов"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Grid номер шесть — Игра"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Префиксы свойств и значений в CSS"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Переменные в CSS" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Обзор макета для отработки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка учебного макета с преподавателем часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка учебного макета с преподавателем часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка учебного макета с преподавателем часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка учебного макета с преподавателем часть четыре"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка учебного макета с преподавателем часть пять"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="JavaScript. Вступление"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Что такое JS и программирование в целом"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Переменные и правила их написания"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Математические операции и конкатенация строк"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Типы данных" isDisabled={true} />
+              <LessonItem lessonName="Условия" isDisabled={true} />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Циклы" isDisabled={true} />
+              <LessonItem
+                lessonName="Объектные типы данных. Массивы"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Функции" isDisabled={true} />
+              <LessonItem lessonName="Объекты" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Области видимости" isDisabled={true} />
+              <LessonItem lessonName="Методы массивов" isDisabled={true} />
+              <LessonItem lessonName="DOM-Tree" isDisabled={true} />
+              <LessonItem
+                lessonName="Поиск элементов и базовые манипуляции"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="События" isDisabled={true} />
+              <LessonItem lessonName="Работа с классами" isDisabled={true} />
+              <LessonItem lessonName="Всплытие событий" isDisabled={true} />
+              <LessonItem
+                lessonName="Делегирование событий"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Практика" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам!"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="JavaScript. Заключение"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Презентация макета" isDisabled={true} />
+              <LessonItem lessonName="План верстки" isDisabled={true} />
+              <LessonItem
+                lessonName="Формируем иерархию файлов проекта"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Общие настройки проекта"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка хэдера часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка хэдера часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка хэдера часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Адаптив хэдера часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Адаптив хэдера часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Адаптив хэдера часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка футера часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка футера часть два"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Адаптив футера" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Создание секции о компании часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Создание секции о компании часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Создание секции о компании часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Адаптив секции о компании"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка программы часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка программы часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка программы часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка программы часть четыре"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка программы часть пять"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка программы часть шесть"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Адаптив программы" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка фотогалереи часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка фотогалереи часть два"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Адаптив фотогалереи" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Вёрстка отзывов" isDisabled={true} />
+              <LessonItem lessonName="Адаптив отзывов" isDisabled={true} />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка контактной секции часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Вёрстка контактной секции часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Адаптив контактной секции"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Вёрстка. Финал" isDisabled={true} />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header>Модуль Wordpress</button>
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem lessonName="Введение в WordPress" isDisabled={true} />
+              <LessonItem
+                lessonName="Установка ВП на локалку (OSP)"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Тур по админке" isDisabled={true} />
+              <LessonItem
+                lessonName="Вводный урок по натяжке"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="База языка РНР — часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Повторим пройденный в уроке по РНР материал — часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="База языка РНР — часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Повторим пройденный в уроке по РНР материал — часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="База языка РНР — часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Повторим пройденный в уроке по РНР материал — часть три"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отчёт по пройденному материалу"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Иерархия файлов темы — часть один"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Иерархия файлов темы — часть два"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Повторим иерархию файлов темы"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Установка плагинов" isDisabled={true} />
+              <LessonItem lessonName="Знакомимся с ACF" isDisabled={true} />
+              <LessonItem
+                lessonName="Вывод значений из полей ACF"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Обзор макета для натяжки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Подготовка файлов темы"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Подключение необходимых файлов к теме"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по пройденным урокам"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Приобретение хостинга и перенос WordPress на хостинг"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка шапки и работа с меню"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отчёт по домашнему заданию"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка Главной. Повторитель ACF и нарезка картинок"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка Главной. Натяжка слайдера и создание шорткода"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка Главной. Создание и работа с новым посттайпом"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем домашку на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка Главной. Работа с блогом"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка Футера. Знакомство с Contact Form семь"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка страницы About Us. Хлебные крошки и прочее"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка страницы Blog. Кастомный архив для посттайпа post"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка страницы открытого поста"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем ваш результат на проверку"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Натяжка страницы Contact. Карты и reCaptcha"
+                isDisabled={false}
+                isPoshalka={"second"}
+              />
+              <LessonItem
+                lessonName="Перенос готового сайта и его проверка. Отправка писем CF"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по базовому WordPress"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Что такое FTP и как с ним работать"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Ура, дипломка!" isDisabled={true} />
+              <LessonItem
+                lessonName="Дополнительно про базу данных, хостинги, переносы сайтов на WordPress"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Конструктор сайтов Elementor"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Создание лендинга на Elementor. Тема Hello Elementor, сборка секций, формы"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Создание лендинга на Elementor. Popup, якори, смена языка"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Продвинутый Elementor"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Собственный виджет для Elementor c Unlimited Elements"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Закрепим знания по элементору"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Ура, ещё одна дипломка!"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Дочерние темы" isDisabled={true} />
+              <LessonItem lessonName="Плагин WooCommerce" isDisabled={true} />
+              <LessonItem lessonName="И снова дипломка!" isDisabled={true} />
+              <LessonItem
+                lessonName="NULLED темы и Demo Import"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Редактируем интернет-магазин на теме Woodmart"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Копирование простого сайта"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Создание таблиц на WordPress"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Как сделать аудит сайта"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Slider Revolution — крутой слайдер для WordPress"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Делаем простой квиз на WordPress"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Отправляем результаты ваших трудов на проверку"
+                isDisabled={true}
+              />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header
+            >Модуль Старт на фрилансе</button
+          >
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem lessonName="Введение" isDisabled={true} />
+              <LessonItem
+                lessonName="Что такое фриланс, как начать работать и что нужно"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Виды фриланс-бирж. Почему Kwork — это твой выбор"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Обзор функционала фриланс-биржи Кворк"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Что нельзя делать на Кворке"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Семь этапов продаж и клиентоориентированность"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Негативные отзывы и конфликты с заказчиками"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Что значит красивый сайт на языке клиента"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Как сделать продающий аккаунт на Кворке"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Как сделать продающий отклик на фрилансе"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Как выводить клиентов и когда уходить с биржи"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Будь клиентом. Заключение"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Домашнее задание" isDisabled={true} />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header
+            >Модуль Софтскиллы в IT</button
+          >
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem lessonName="Введение" isDisabled={true} />
+              <LessonItem
+                lessonName="Ошибки начинающего фрилансера"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Почему не существует уровня сложности?"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Построение клиентской базы и какой крах может произойти"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="В веб-разработку только ради денег — бессмысленно"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="История и план моего марафона — пять тысяч рублей в день"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Перегорел, прокрастинация и синдром самозванца"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Почему ты проиграл, когда отложил на завтра"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Социальная и игровая зависимость. Иллюзия бессмертия"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Почему важно правильно ставить цели"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Страх неудачи и почему ошибаться — это супер"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Важность времени: не спускай его в унитаз"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Синдром Инстаграмма: как правильно сравнивать"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Как правильно решать конфликты с заказчиками"
+                isDisabled={false}
+                isPoshalka={"third"}
+              />
+              <LessonItem
+                lessonName="Конкуренция на фрилансе — главный страх начинающих"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Поиск информации важнее хорошего кода"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Итоги" isDisabled={true} />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header>Модуль JavaScript</button>
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem lessonName="Введение" isDisabled={true} />
+              <LessonItem
+                lessonName="Что такое JavaScript?"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Переменные и базовые выражения"
+                isDisabled={false}
+                isPoshalka={"fourth"}
+              />
+              <LessonItem
+                lessonName="Наименования переменных"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Математические операции"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Типы данных" isDisabled={true} />
+              <LessonItem lessonName="Приведение типов" isDisabled={true} />
+              <LessonItem
+                lessonName="Тест по переменным и типам данных"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Практика по переменным и типам данных"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Домашнее задание — переменные и типы данных"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Операторы сравнения" isDisabled={true} />
+              <LessonItem lessonName="Условия" isDisabled={true} />
+              <LessonItem lessonName="Тернарный оператор" isDisabled={true} />
+              <LessonItem lessonName="Switch case" isDisabled={true} />
+              <LessonItem lessonName="Тест по условиям" isDisabled={true} />
+              <LessonItem lessonName="Практика по условиям" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — условия"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя — условия"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Циклы" isDisabled={true} />
+              <LessonItem
+                lessonName="Цикл while и do while"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Break и continue" isDisabled={true} />
+              <LessonItem lessonName="Вложенные циклы" isDisabled={true} />
+              <LessonItem lessonName="Тест по циклам" isDisabled={true} />
+              <LessonItem lessonName="Практика по циклам" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — циклы"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя — циклы"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Функции" isDisabled={true} />
+              <LessonItem lessonName="Виды функций" isDisabled={true} />
+              <LessonItem lessonName="Тест по функциям" isDisabled={true} />
+              <LessonItem lessonName="Практика по функциям" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — функции"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя — функции"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Объекты" isDisabled={true} />
+              <LessonItem lessonName="Методы объектов" isDisabled={true} />
+              <LessonItem lessonName="Цикл for in" isDisabled={true} />
+              <LessonItem
+                lessonName="Деструктуризация и spread"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Тест по объектам" isDisabled={true} />
+              <LessonItem lessonName="Практика по объектам" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — объекты"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя — объекты"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Примитивы, ссылки, мутации"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Strict mode" isDisabled={true} />
+              <LessonItem lessonName="Callback-функции" isDisabled={true} />
+              <LessonItem lessonName="Окружения" isDisabled={true} />
+              <LessonItem lessonName="Особенность var" isDisabled={true} />
+              <LessonItem lessonName="Замыкание" isDisabled={true} />
+              <LessonItem lessonName="This" isDisabled={true} />
+              <LessonItem
+                lessonName="Тест по окружениям и this"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Массивы" isDisabled={true} />
+              <LessonItem lessonName="Методы массивов" isDisabled={true} />
+              <LessonItem lessonName="Тест по массивам" isDisabled={true} />
+              <LessonItem lessonName="Практика по массивам" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — массивы"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя — массивы"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Map и filter" isDisabled={true} />
+              <LessonItem
+                lessonName="Find, findIndex, includes"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Some и every" isDisabled={true} />
+              <LessonItem lessonName="Reduce и sort" isDisabled={true} />
+              <LessonItem
+                lessonName="Slice, splice и строки"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Тест по методам массивов"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Практика по методам массивов"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Домашнее задание — методы массивов"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Практика Todo List" isDisabled={true} />
+              <LessonItem lessonName="Создание задачи" isDisabled={true} />
+              <LessonItem lessonName="Выполнение задачи" isDisabled={true} />
+              <LessonItem lessonName="Удаление задачи" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — Todo List"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Введение в Web API" isDisabled={true} />
+              <LessonItem lessonName="DOM" isDisabled={true} />
+              <LessonItem
+                lessonName="Получение элементов и манипуляции над ними"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="События" isDisabled={true} />
+              <LessonItem lessonName="Работа с классами" isDisabled={true} />
+              <LessonItem
+                lessonName="Работа с HTML-разметкой"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Тест по DOM" isDisabled={true} />
+              <LessonItem lessonName="Практика по DOM" isDisabled={true} />
+              <LessonItem
+                lessonName="Домашнее задание — DOM"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Реализация преподавателя — DOM"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Всплытие событий" isDisabled={true} />
+              <LessonItem
+                lessonName="Создание задачи через форму"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Делегирование событий"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Практика по делегированию"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Домашнее задание — Todo List DOM"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="JSON" isDisabled={true} />
+              <LessonItem lessonName="LocalStorage" isDisabled={true} />
+              <LessonItem
+                lessonName="Практика по LocalStorage"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Модули" isDisabled={true} />
+              <LessonItem
+                lessonName="Добавляем модули в проект"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Тест по пройденным темам"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Домашнее задание — модули"
+                isDisabled={true}
+              />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header>Модуль Git и Github</button
+          >
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem
+                lessonName="Что такое Git и зачем он нужен"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Начало работы с Git" isDisabled={true} />
+              <LessonItem lessonName="Основные команды" isDisabled={true} />
+              <LessonItem lessonName="Знакомство с GitHub" isDisabled={true} />
+              <LessonItem lessonName="Ветки" isDisabled={true} />
+              <LessonItem lessonName="Работа с ветками" isDisabled={true} />
+              <LessonItem
+                lessonName="Слияние веток и rebase"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Решение конфликтов" isDisabled={true} />
+              <LessonItem
+                lessonName="Переход по истории и откат изменений"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Изменение состояния и копирование коммитов"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Дополнительные возможности Git и GitHub"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="SSH" isDisabled={true} />
+              <LessonItem
+                lessonName="Деплой проекта на GitHub Pages"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="README.md" isDisabled={true} />
+              <LessonItem lessonName="Заключение" isDisabled={true} />
+              <LessonItem
+                lessonName="Тест по пройденному материалу"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Дипломная работа" isDisabled={true} />
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" data-acc-header
+            >Модуль Продвинутая верстка</button
+          >
+          <div class="acc-body">
+            <ul class="lesson-list">
+              <LessonItem lessonName="Введение" isDisabled={true} />
+              <LessonItem
+                lessonName="NodeJS. Developer environment и Production environment"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="PM и сборщики" isDisabled={true} />
+              <LessonItem lessonName="Знакомство с Vite" isDisabled={true} />
+              <LessonItem
+                lessonName="Контроль качества кода. ESLint, Prettier, StyleLint"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Препроцессоры. SASS — SCSS"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Разбор функционала SCSS"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Квиз" isDisabled={true} />
+              <LessonItem
+                lessonName="Подготовка к верстке номер один. Создаем миксины"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Подготовка к верстке номер два. UI-Kit"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Подготовка к верстке номер три. Работа с изображениями и HTML"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка Header и реализация переключения темы"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка главной страницы. Секция Hero"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка главной страницы. Секция Overview"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка главной страницы. Секция Features"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка главной страницы. Секция Strength и Partners"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка главной страницы. Секция Insight и реализация слайдера"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка главной страницы. Секция Testimonials и реализация слайдера"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Верстка Footer" isDisabled={true} />
+              <LessonItem
+                lessonName="Верстка страницы Pricing. Секция Hero"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка страницы Pricing. Секция FAQ"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка страницы Contact. Секция Hero и подключение карты"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Верстка страницы Contact. Секция Get-started"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Сборка и деплой проекта"
+                isDisabled={true}
+              />
+              <LessonItem
+                lessonName="Заключение. Что ещё можно изучить"
+                isDisabled={true}
+              />
+              <LessonItem lessonName="Дипломная работа" isDisabled={true} />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <h3 class="right-title">
+      Иногда подсказка спрятана там, где её не видно невооруженным взглядом… <br
+      />
+      Попробуй заглянуть глубже, куда рядовой пользователь никогда бы не полез
+    </h3>
+    <!-- псс, братан, у тебя есть непрочитанные уведомления, не будь тем самым противным челом, который был в сети "недавно" и причитай их наконец -->
+    <p data-poshalka-text="" class="ОТКРОЙ МЕНЯ БРО">
+      <!-- В этом теге точно должно что-то появиться, но для этого тебе нужно найти все доступные уроки. Не пытайся их найти сам, по карте разбросаны подсказки. Кстати, первая находится строчкой выше -->
+    </p>
+  </div>
+</div>
+<style scoped>
+  .left {
+    min-width: 330px;
+  }
+  .wrapper {
+    display: flex;
+    gap: 3.75rem;
+    align-items: start;
+  }
+  .lessons-wrapper {
+    width: 100%;
+    outline: 1px solid var(--theme-border);
+    color: var(--theme-text-harder);
+    background: var(--theme-bg-hard);
+    border-radius: 0.5rem;
+  }
+  .heading.acc-header {
+    color: var(--theme-accent-harder);
+    outline: 1px solid var(--theme-border);
+    border-radius: 8px;
+  }
+  .timer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: var(--theme-text-harder);
+    background-color: var(--theme-accent-soft);
+    font-size: 1rem;
+    line-height: 1.21;
+  }
+  .timer-text {
+    color: var(--theme-text-harder);
+    font-size: 1rem;
+    line-height: 1.21;
+  }
+  .accordion {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 1.25rem;
+  }
+  .acc-item {
+    margin-bottom: 0.75rem;
+  }
+  .acc-item {
+    border-radius: 0.5rem;
+    outline: 1px solid var(--theme-border);
+  }
+  .acc-header {
+    width: 100%;
+    color: var(--theme-text-harder);
+    background: var(--theme-bg-hard);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+    cursor: pointer;
+  }
+  .acc-header:hover {
+    outline-color: var(--theme-text-hard);
+  }
+  .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 15px;
+  }
+  .acc-body p {
+    margin: 15px 0;
+  }
+  .learn-icon {
+    color: var(--theme-accent-harder);
+    margin-right: 1.25em;
+  }
+
+  .lesson-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .lesson-list {
+    padding-bottom: 20px;
+  }
+
+  .acc-item.active .acc-header {
+    outline: 1px solid var(--theme-border);
+    border-radius: 8px;
+    color: var(--theme-text-harder);
+    background: var(--theme-bg-softer);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    transition:
+      outline 0.2s,
+      color 0.2s;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  .right {
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border);
+    background: var(--theme-bg-hard);
+    padding: 2.5rem;
+    container-type: inline-size;
+    margin-bottom: 0.9375rem;
+    width: 100%;
+    height: 630px;
+    margin-top: 100px;
+  }
+
+  .right-title {
+    color: var(--theme-text-harder);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+  }
+</style>
+<script>
+  const buttons =
+    document.querySelectorAll<HTMLButtonElement>("[data-acc-header]");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".acc-item") as HTMLElement | null;
+      const body = btn.nextElementSibling as HTMLElement | null;
+
+      if (!item || !body) return;
+
+      const isOpen = body.style.maxHeight && body.style.maxHeight !== "";
+
+      if (isOpen) {
+        body.style.maxHeight = "";
+        item.classList.remove("active");
+      } else {
+        body.style.maxHeight = "0px";
+        requestAnimationFrame(() => {
+          body.style.maxHeight = body.scrollHeight + "px";
+        });
+        item.classList.add("active");
+      }
+    });
+  });
+
+  const poshalkos =
+    document.querySelectorAll<HTMLParagraphElement>("[data-poshalka]");
+
+  const poshalkaText = document.querySelectorAll<HTMLElement>(
+    "[data-poshalka-text]",
+  );
+
+  const texts: Record<string, string> = {
+    first:
+      "01101011 следующая посхалко в Натяжка страницы Contact. Карты и reCaptcha",
+    second:
+      "01100101 следующая посхалко в Как правильно решать конфликты с заказчиками",
+    third: "01101110 некст в Переменные и базовые выражения",
+    fourth: "01100110",
+  };
+
+  poshalkos.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.poshalka;
+      if (!key) return;
+
+      const text = texts[key];
+      if (!text) return;
+
+      poshalkaText.forEach((block) => {
+        block.innerHTML += `<p style="opacity: 0;">${text}</p>`;
+      });
+    });
+  });
+
+  console.log("01101001");
+
+  localStorage.setItem("POSHALKO", "01100010");
+</script>

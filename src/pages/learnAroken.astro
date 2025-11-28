@@ -1,0 +1,247 @@
+---
+import "../assets/css/reset.css"
+import "../assets/css/learnGlobal.css"
+import { Image } from "astro:assets"
+import LogoIcon from "../assets/icons/logo.svg"
+import ArokenAvatar from "../assets/img/aroken-avatar.jpg"
+import OldStatsCard from "../components/OldStatsCard.astro"
+import Global from "../components/Global.astro"
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Learn Aroken</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <nav>
+          <a href="/" class="logo"><LogoIcon />Арокен.ру</a>
+          <ul>
+            <li><a href="/"><span>🔥</span>Главная</a></li>
+            <li><a href="/"><span>🗃️</span>Мои отчеты</a></li>
+            <li><a href="/"><span>🎓</span>Обучение</a></li>
+            <li><a href="/"><span>⏱️</span>Статистика</a></li>
+            <li><a href="/"><span>🎙️</span>Вебинары</a></li>
+            <li><a href="/"><span>🎒</span>База знаний</a></li>
+          </ul>
+        </nav>
+        <div class="right">
+          <header class="header">
+            <p class="header__text">
+              Твое обучение заканчивается через полгода
+            </p>
+            <div class="header__profile">
+              <div class="header__profile-info">
+                <div class="name">Максим</div>
+                <div class="plan">💎 Тариф Премиум</div>
+              </div>
+              <Image
+                src={ArokenAvatar}
+                class="header__profile-avatar"
+                alt="Aroken avatar"
+              />
+            </div>
+          </header>
+
+          <div class="stats">
+            <h2 class="stats__title">Общая статистика</h2>
+            <div class="cards">
+              <OldStatsCard
+                img="📅"
+                time="01.10.0101"
+                text="Дата моего последнего отчета"
+              />
+              <OldStatsCard
+                img="⏳"
+                time="011 ч."
+                text="Всего часов я обучался"
+              />
+              <OldStatsCard img="📔" time="01" text="Всего отчетов я оставил" />
+              <OldStatsCard
+                img="🏆"
+                time="111"
+                text="Всего учеников в системе"
+              />
+              <OldStatsCard
+                img="⏱️"
+                time="01.11.0010 ч."
+                text="часов обучались все ученики"
+              />
+              <OldStatsCard
+                img="🗄️"
+                time="7910"
+                text="Всего оставили отчетов"
+              />
+              <OldStatsCard img="😵" time="24" text="Забросили со старта" />
+              <OldStatsCard
+                img="⏱️"
+                time="4 ч."
+                text="Среднее время одного отчёта всех учеников"
+              />
+              <OldStatsCard
+                img="⏳"
+                time="98 ч."
+                text="Среднее время обучения одного ученика"
+              />
+              <OldStatsCard
+                img="⏰"
+                time="01:11:00:11"
+                text="Время последнего отчёта в системе"
+              />
+              <OldStatsCard
+                img="🎓"
+                time="338"
+                text="Всего учеников в Премиум"
+              />
+              <OldStatsCard
+                img="⏰"
+                time="3 ч."
+                text="Моё среднее время отчёта"
+              />
+            </div>
+          </div>
+
+          <Global />
+
+          <footer class="footer">
+            Разработано командой арокод, потратив 01101110 нервов
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style scoped>
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .logo svg {
+    width: 40px;
+  }
+
+  nav {
+    background-color: var(--bg-color);
+    padding: 20px 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  ul li a {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    transition: all 0.3s;
+    color: #fff;
+    font-size: 16px;
+    min-width: 200px;
+  }
+
+  ul li a:hover {
+    background-color: var(--accent-color);
+    color: #555555;
+  }
+
+  .right {
+    padding: 20px 30px;
+    margin-left: 240px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: calc(100% - 240px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+  .header__text {
+    color: #fff;
+    padding: 5px 5px;
+    background-color: var(--accent-color);
+    height: 30px;
+    border-radius: 8px;
+    color: #101010;
+    font-weight: 600;
+  }
+  .header__profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+  }
+  .header__profile-info {
+  }
+  .name {
+    font-weight: 700;
+    text-align: right;
+  }
+  .plan {
+  }
+  .header__profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  .stats {
+    color: #fff;
+  }
+
+  .stats__title {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+
+  .cards {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .footer {
+    margin-top: auto;
+    padding-top: 30px;
+    color: #fff;
+  }
+</style>

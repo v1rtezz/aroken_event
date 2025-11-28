@@ -1,0 +1,107 @@
+---
+import { Image } from "astro:assets";
+import QuestionIcon from "../../assets/icons/question.svg";
+---
+
+<section class="stats">
+  <h3 class="title">Твои достижения</h3>
+  <div class="wrapper">
+    <QuestionIcon width={41} height={41} />
+    <QuestionIcon width={41} height={41} />
+    <QuestionIcon width={41} height={41} />
+    <QuestionIcon width={41} height={41} />
+    <div class="achievements">
+      <button class="achievements-btn" data-achievements-btn type="button">
+        <QuestionIcon width={41} height={41} />
+      </button>
+      <div class="achievements-dropdown">
+        <div class="achievements-dropdown-header">
+          <h3 class="achievements-dropdown-title">ПОСХАЛКО</h3>
+          <h5 class="achievements-item-title">01101111</h5>
+        </div>
+      </div>
+    </div>
+    <QuestionIcon width={41} height={41} />
+    <QuestionIcon width={41} height={41} />
+    <QuestionIcon width={41} height={41} />
+    <QuestionIcon width={41} height={41} />
+  </div>
+</section>
+<style scoped>
+  .title {
+    color: var(--theme-text-harder);
+    font-family: Evolventa, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .stats {
+    text-align: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border);
+    background: var(--theme-bg-hard);
+    padding: 2.5rem 1.25rem 0;
+  }
+
+  .wrapper {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .achievements {
+    position: relative;
+  }
+  .achievements-dropdown {
+    position: absolute;
+    top: calc(100% + 0.625rem);
+    left: 0;
+    z-index: 2;
+    border-radius: 0.5rem;
+    border: 1px solid var(--theme-border);
+    background: var(--theme-bg-hard);
+    padding: 1.25rem;
+    min-width: 20rem;
+    transition:
+      translate 0.3s,
+      opacity 0.3s,
+      scale 0.3s,
+      visibility 0.3s;
+    translate: 0 -10%;
+    transform-origin: left top;
+    opacity: 0;
+    scale: 0.2 0.5;
+    visibility: hidden;
+    box-shadow: 0 0 20px 3px #0003;
+  }
+  .achievements-dropdown--active {
+    translate: 0;
+    opacity: 1;
+    scale: 1 1;
+    visibility: visible;
+  }
+  .achievements-dropdown-title {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 130%;
+    color: var(--theme-text-softer);
+    margin-bottom: 1.25rem;
+  }
+  .achievements-item-title {
+    color: var(--theme-text-hard);
+    font-size: 1rem;
+    font-family: Montserrat, sans-serif;
+    line-height: 1.4;
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector("[data-achievements-btn]");
+    const dropdown = document.querySelector(".achievements-dropdown");
+    if (!btn || !dropdown) return;
+
+    btn.addEventListener("click", () => {
+      dropdown.classList.toggle("achievements-dropdown--active");
+    });
+  });
+</script>
