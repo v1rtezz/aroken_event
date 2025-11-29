@@ -1,8 +1,12 @@
+---
+import casinoVideo from "../assets/casino.webm"
+---
+
 <!-- Casino Video Overlay -->
 <div class="casino-overlay" id="casino-overlay">
   <div class="casino-video-container">
-    <video id="casino-video">
-      <source src="/src/assets/casino.webm" type="video/webm" />
+    <video id="casino-video" playsinline preload="auto">
+      <source src={casinoVideo} type="video/webm" />
       Your browser does not support the video tag.
     </video>
   </div>
@@ -58,10 +62,27 @@
     overlay.classList.add("active")
     document.body.style.overflow = "hidden"
 
-    // Play video
-    video.play().catch((err) => {
-      console.error("Error playing video:", err)
-    })
+    // Play video with sound (user has already interacted with the page)
+    video
+      .play()
+      .then(() => {
+        console.log("Casino video playing with sound")
+      })
+      .catch((err) => {
+        console.error("Error playing video:", err)
+      })
+  }
+
+  // Check if letter_game_count is 14 and trigger video
+  function checkLetterGameCount() {
+    const count = localStorage.getItem("letter_game_count")
+    const videoShown = sessionStorage.getItem("casino_video_shown")
+
+    if (count === "14" && !videoShown) {
+      // Mark as shown in this session to prevent repeated triggers
+      sessionStorage.setItem("casino_video_shown", "true")
+      showCasinoVideo()
+    }
   }
 
   // Progressive video preloading
@@ -97,16 +118,34 @@
     showCasinoVideo()
   })
 
+  // Listen for localStorage changes (from other tabs/windows)
+  window.addEventListener("storage", (e) => {
+    if (e.key === "letter_game_count" && e.newValue === "14") {
+      checkLetterGameCount()
+    }
+  })
+
   // Auto-initialize on page load
   document.addEventListener("astro:page-load", () => {
     preloadCasinoVideo()
+    checkLetterGameCount()
+
+    // Also check periodically in case localStorage changes in same tab
+    const interval = setInterval(() => {
+      checkLetterGameCount()
+    }, 500)
+
+    // Store interval ID to clean up later if needed
+    ;(window as any).casinoCheckInterval = interval
   })
 
   if (document.readyState === "complete") {
     preloadCasinoVideo()
+    checkLetterGameCount()
   } else {
     document.addEventListener("DOMContentLoaded", () => {
       preloadCasinoVideo()
+      checkLetterGameCount()
     })
   }
 </script>
