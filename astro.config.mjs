@@ -2,7 +2,4 @@
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
-export default defineConfig({
-  site: "https://v1rtezz.github.io",
-  base: "/aroken_event/", 
-});
+export default defineConfig({});
