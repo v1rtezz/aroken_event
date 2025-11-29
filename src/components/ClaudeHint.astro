@@ -150,7 +150,7 @@
 
   .claude-messages {
     min-height: 200px;
-    max-height: 400px;
+    max-height: 200px;
     overflow-y: auto;
     color: #e0e0e0;
     font-size: 15px;
@@ -343,18 +343,19 @@
 <script>
   const TARGET_SEQUENCE = "AROKENFIBERSON"
   const STORAGE_KEY = "letter_game_progress"
+  const HINTS_COUNT_KEY = "claude_hints_count"
 
   const HINTS: Record<string, string> = {
     "1": "с такой аватаркой тебе ничего не светит здесь",
     "2": "ощущение, будто ты все таки не до конца прошел курс.. Внимательно посмотри на скиллы и прогресс над ними",
-    "3": "есть еще одна кнопка на первом экране..",
-    "4": "4, 5, 6 и 7 коды слишком простые, попробуй найти их сам, просто пролистай чуть-чуть",
-    "5": "4, 5, 6 и 7 коды слишком простые, попробуй найти их сам, просто пролистай чуть-чуть",
-    "6": "4, 5, 6 и 7 коды слишком простые, попробуй найти их сам, просто пролистай чуть-чуть",
-    "7": "4, 5, 6 и 7 коды слишком простые, попробуй найти их сам, просто пролистай чуть-чуть",
+    "3": "есть еще одна кнопка на первом экране.. Нажми ее",
+    "4": "тебе случаем не пора запросить паузу? Успеешь курс пройти?",
+    "5": "Пролистай к урокам и посмотри код призыва заглянуть глубже",
+    "6": "Пролистай к урокам и посмотри код призыва заглянуть глубже",
+    "7": "Пролистай к урокам и посмотри код призыва заглянуть глубже",
     "8": "Загляни поглубже, куда обычный юзер не залез бы НИКОГДА В ЖИЗНИ, но мы лазим часто",
     "9": "Загляни поглубже, куда обычный юзер не залез бы НИКОГДА В ЖИЗНИ, но мы лазим часто",
-    "10": `Машина времени — это гипотетическое устройство или приспособление, предназначенное для путешествий во времени в прошлое или будущее, вопреки его естественному однонаправленному течению. <br> <br>         Разумеется, машины времени не существует, но я чувствую, что ты все таки можешь откатиться назад.. в этом месте всплакнут старые ученики, а новые даже не поймут о чем речь..`,
+    "10": `Внимательно посмотри на URL. Машина времени — это гипотетическое устройство или приспособление, предназначенное для путешествий во времени в прошлое или будущее, вопреки его естественному однонаправленному течению. Разумеется, машины времени не существует, но я чувствую, что ты все таки можешь откатиться назад.. в этом месте всплакнут старые ученики, а новые даже не поймут о чем речь..`,
   }
 
   function initClaude() {
@@ -372,6 +373,17 @@
 
     // State to track which hints from the filtered list we have shown in this session
     let shownHintKeys: string[] = []
+
+    // Load hint count from localStorage
+    let hintCount = 0
+    try {
+      const savedCount = localStorage.getItem(HINTS_COUNT_KEY)
+      if (savedCount) {
+        hintCount = parseInt(savedCount, 10) || 0
+      }
+    } catch (e) {
+      console.error("Error loading hint count:", e)
+    }
 
     // Закрытие всех других dropdown
     function closeOtherDropdowns() {
@@ -593,6 +605,27 @@
       await typeText(HINTS[nextHintKey])
 
       shownHintKeys.push(nextHintKey)
+
+      // Increment and save hint count
+      hintCount++
+      localStorage.setItem(HINTS_COUNT_KEY, hintCount.toString())
+
+      // Dispatch custom event for milestone tracking
+      window.dispatchEvent(
+        new CustomEvent("hint-used", {
+          detail: { count: hintCount },
+        }),
+      )
+
+      // Check if this is the 10th hint
+      if (hintCount >= 10) {
+        // Wait 2 seconds, then clear localStorage and reload
+        setTimeout(() => {
+          localStorage.clear()
+          window.location.reload()
+        }, 2000)
+        return
+      }
 
       // Check if there are more hints available
       const remainingHints = availableHintKeys.filter(

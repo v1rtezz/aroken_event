@@ -1,0 +1,112 @@
+<!-- Casino Video Overlay -->
+<div class="casino-overlay" id="casino-overlay">
+  <div class="casino-video-container">
+    <video id="casino-video">
+      <source src="/src/assets/casino.webm" type="video/webm" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<style>
+  /* Casino Video Overlay */
+  .casino-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .casino-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .casino-video-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .casino-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<script>
+  // Casino video functionality
+  function showCasinoVideo() {
+    const overlay = document.getElementById("casino-overlay")
+    const video = document.getElementById(
+      "casino-video",
+    ) as HTMLVideoElement | null
+    if (!overlay || !video) return
+
+    // Show overlay
+    overlay.classList.add("active")
+    document.body.style.overflow = "hidden"
+
+    // Play video
+    video.play().catch((err) => {
+      console.error("Error playing video:", err)
+    })
+  }
+
+  // Progressive video preloading
+  function preloadCasinoVideo() {
+    const video = document.getElementById(
+      "casino-video",
+    ) as HTMLVideoElement | null
+    if (!video) return
+
+    // Use requestIdleCallback for progressive loading
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(
+        () => {
+          // Set preload to auto to start loading the video
+          video.preload = "auto"
+        },
+        { timeout: 5000 },
+      )
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => {
+        video.preload = "auto"
+      }, 5000)
+    }
+  }
+
+  // Make functions globally available
+  ;(window as any).showCasinoVideo = showCasinoVideo
+  ;(window as any).preloadCasinoVideo = preloadCasinoVideo
+
+  // Listen for casino-video-trigger event
+  window.addEventListener("casino-video-trigger", () => {
+    showCasinoVideo()
+  })
+
+  // Auto-initialize on page load
+  document.addEventListener("astro:page-load", () => {
+    preloadCasinoVideo()
+  })
+
+  if (document.readyState === "complete") {
+    preloadCasinoVideo()
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      preloadCasinoVideo()
+    })
+  }
+</script>

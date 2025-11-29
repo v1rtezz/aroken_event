@@ -88,6 +88,7 @@
     height: 40px;
     display: flex;
     gap: 0.625rem;
+    cursor: pointer;
   }
 
   label {
@@ -97,7 +98,7 @@
     color: #fff;
     font-weight: 500;
     user-select: none;
-    cursor: auto;
+    cursor: pointer;
   }
 
   input[type="range"] {
@@ -141,21 +142,22 @@
     const values: Record<string, number> = {
       html: Number(
         (document.querySelector('input[name="html"]') as HTMLInputElement)
-          ?.value
+          ?.value,
       ),
       css: Number(
-        (document.querySelector('input[name="css"]') as HTMLInputElement)?.value
+        (document.querySelector('input[name="css"]') as HTMLInputElement)
+          ?.value,
       ),
       js: Number(
-        (document.querySelector('input[name="js"]') as HTMLInputElement)?.value
+        (document.querySelector('input[name="js"]') as HTMLInputElement)?.value,
       ),
       soft: Number(
         (document.querySelector('input[name="soft"]') as HTMLInputElement)
-          ?.value
+          ?.value,
       ),
       wordpress: Number(
         (document.querySelector('input[name="wordpress"]') as HTMLInputElement)
-          ?.value
+          ?.value,
       ),
     }
 
@@ -168,7 +170,7 @@
     ) {
       wrapper.insertAdjacentHTML(
         "afterend",
-        `<p style="color: var(--theme-text-harder);font-size: 1.125rem; font-weight: 700; line-height: 1.2; margin-top: 3rem;">01110010</p>`
+        `<p style="color: var(--theme-text-harder);font-size: 1.125rem; font-weight: 700; line-height: 1.2; margin-top: 3rem;">01110010</p>`,
       )
     }
   }

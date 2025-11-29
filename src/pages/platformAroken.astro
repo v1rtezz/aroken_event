@@ -7,6 +7,7 @@ import NewLessons from "../components/NewLessons.astro"
 import NewFooter from "../components/NewFooter.astro"
 import Global from "../components/Global.astro"
 import Aroken from "../components/Aroken.astro"
+import CasinoVideo from "../components/CasinoVideo.astro"
 ---
 
 <html lang="en">
@@ -18,6 +19,7 @@ import Aroken from "../components/Aroken.astro"
     <title>Platform aroken.ru</title>
   </head>
   <body>
+    <CasinoVideo />
     <div class="container">
       <NewHeader />
       <NewStats />
@@ -220,4 +222,95 @@ import Aroken from "../components/Aroken.astro"
       }, 68600)
     })
   }
+
+  // Listen for hint usage milestones
+  const HINTS_COUNT_KEY = "claude_hints_count"
+  const triggeredMilestones = new Set<number>()
+
+  window.addEventListener("hint-used", ((event: CustomEvent) => {
+    const count = event.detail.count
+
+    // Check milestones: 3, 7, 10
+    if (
+      (count === 3 || count === 7 || count === 10) &&
+      !triggeredMilestones.has(count)
+    ) {
+      triggeredMilestones.add(count)
+
+      // Show overlay and subtitles
+      speakerOverlay?.classList.remove("hidden")
+      speakerOverlay?.classList.remove("transparent")
+      subtitlesElement?.classList.remove("hidden")
+
+      // Milestone texts
+      const milestoneTexts: Record<number, string> = {
+        3: "да хватит уже списывать чел",
+        7: "да хватит уже списывать чел",
+        10: "слишком много заюзал подсказок",
+      }
+
+      const text = milestoneTexts[count] || "Продолжай!"
+
+      // Different duration for different hints
+      const duration = count === 10 ? 2000 : 2000
+
+      // Different audio for 10th hint
+      const audioPath = count === 10 ? "/finalHint.wav" : "/hints.wav"
+
+      // Trigger Aroken audio and animation
+      triggerAroken({
+        audioPath: audioPath,
+        duration: duration,
+      })
+
+      typeWriter(text, duration)
+
+      // Hide overlay after audio finishes
+      setTimeout(() => {
+        speakerOverlay?.classList.add("hidden")
+        subtitlesElement?.classList.add("hidden")
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, duration)
+    }
+  }) as EventListener)
+
+  // Check on page load if we need to mark milestones as already triggered
+  try {
+    const savedCount = localStorage.getItem(HINTS_COUNT_KEY)
+    if (savedCount) {
+      const count = parseInt(savedCount, 10) || 0
+      // Mark all milestones up to current count as triggered
+      if (count >= 3) triggeredMilestones.add(3)
+      if (count >= 7) triggeredMilestones.add(7)
+      if (count >= 10) triggeredMilestones.add(10)
+    }
+  } catch (e) {
+    console.error("Error loading hint count:", e)
+  }
+
+  // Listen for letter milestone events (devtools.wav and prefinal.wav)
+  window.addEventListener("aroken-trigger", ((event: CustomEvent) => {
+    const { audioPath, duration, subtitles } = event.detail || {}
+
+    // Check if this is the devtools.wav trigger (required letters found) or prefinal.wav (10 letters found)
+    if (
+      (audioPath === "/devtools.wav" || audioPath === "/prefinal.wav") &&
+      subtitles
+    ) {
+      // Show overlay and subtitles
+      speakerOverlay?.classList.remove("hidden")
+      speakerOverlay?.classList.remove("transparent")
+      subtitlesElement?.classList.remove("hidden")
+
+      // Type out the subtitles
+      typeWriter(subtitles, duration)
+
+      // Hide overlay after audio finishes
+      setTimeout(() => {
+        speakerOverlay?.classList.add("hidden")
+        subtitlesElement?.classList.add("hidden")
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, duration)
+    }
+  }) as EventListener)
 </script>

@@ -344,6 +344,8 @@
       if (foundLetters.length >= TARGET_SEQUENCE.length) {
         showMessage("🎉 Поздравляю! Вы собрали всю фразу!", "success")
         input.disabled = true
+        // Trigger casino video
+        window.dispatchEvent(new CustomEvent("casino-video-trigger"))
       }
     }
 
@@ -400,6 +402,50 @@
         updateDisplay()
         showMessage("Правильно!", "success")
         input.value = ""
+
+        // Check if player has found the required letters: A, R, O, K, E, N, F
+        const requiredLetters = ["A", "R", "O", "K", "E", "N", "F"]
+        const hasAllRequired = requiredLetters.every((letter) =>
+          foundLetters.includes(letter),
+        )
+
+        // Check if we haven't triggered this yet
+        const devtoolsTriggered = localStorage.getItem("devtools_triggered")
+
+        if (hasAllRequired && !devtoolsTriggered) {
+          // Mark as triggered so it doesn't repeat
+          localStorage.setItem("devtools_triggered", "true")
+
+          // Trigger Aroken with devtools.wav audio
+          const event = new CustomEvent("aroken-trigger", {
+            detail: {
+              audioPath: "/devtools.wav",
+              duration: 10000, // 10 seconds for the audio to play
+              subtitles:
+                "брат, жопой чую что на видном месте больше ничего нет. Может, попробуем заглянуть поглубже? Куда обычный юзер бы никогда не залез, а если бы залез - сразу бы вышел",
+            },
+          })
+          window.dispatchEvent(event)
+        }
+
+        // Check if player has found 10 letters
+        const prefinalTriggered = localStorage.getItem("prefinal_triggered")
+
+        if (foundLetters.length === 9 && !prefinalTriggered) {
+          // Mark as triggered so it doesn't repeat
+          localStorage.setItem("prefinal_triggered", "true")
+
+          // Trigger Aroken with prefinal.wav audio
+          const event = new CustomEvent("aroken-trigger", {
+            detail: {
+              audioPath: "/prefinal.wav",
+              duration: 23000, // 23 seconds for the audio to play
+              subtitles:
+                "Машина времени — это гипотетическое устройство или приспособление, предназначенное для путешествий во времени в прошлое или будущее, вопреки его естественному однонаправленному течению. Разумеется, машины времени не существует, но я чувствую, что ты все таки можешь откатиться назад.. в этом месте всплакнут старые ученики, а новые даже не поймут о чем речь..",
+            },
+          })
+          window.dispatchEvent(event)
+        }
       } else {
         showMessage("Неверно!", "error")
       }
@@ -416,6 +462,9 @@
         input.disabled = false
         input.value = ""
         input.focus()
+        // Reset trigger flags
+        localStorage.removeItem("devtools_triggered")
+        localStorage.removeItem("prefinal_triggered")
       }
     }
 

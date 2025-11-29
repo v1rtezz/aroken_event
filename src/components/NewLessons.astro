@@ -1375,9 +1375,8 @@ import LessonItem from "./lessons/LessonItem.astro";
     align-items: start;
     justify-content: center;
     gap: 1.25rem;
-  }
-
-  .lesson-list {
+    max-height: 400px;
+    overflow-y: scroll;
     padding-bottom: 20px;
   }
 
@@ -1454,8 +1453,7 @@ import LessonItem from "./lessons/LessonItem.astro";
       "01101011 следующая посхалко в Натяжка страницы Contact. Карты и reCaptcha",
     second:
       "01100101 следующая посхалко в Как правильно решать конфликты с заказчиками",
-    third: "01101110 некст в Переменные и базовые выражения",
-    fourth: "01100110",
+    third: "01101110",
   };
 
   poshalkos.forEach((btn) => {

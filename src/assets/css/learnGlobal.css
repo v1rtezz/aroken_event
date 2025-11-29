@@ -8,7 +8,3 @@ body {
   background-color: #101010;
   cursor: url('/penis.png'), auto;
 }
-
-* {
-  cursor: url('/penis.png'), auto !important;
-}
