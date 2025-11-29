@@ -1,7 +1,5 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vtm4gazd> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.15.5"><title>Platform aroken.ru</title><link rel="stylesheet" href="/aroken_event/_astro/learnAroken.gXjgCYUc.css">
-<link rel="stylesheet" href="/aroken_event/_astro/platformAroken.BpfqjgSE.css">
-<style>.aroken-container[data-astro-cid-c7vvptf6]{z-index:9999;pointer-events:none;transition:opacity .5s ease,transform .5s ease}.hidden[data-astro-cid-c7vvptf6]{opacity:0;visibility:hidden}.aroken-head[data-astro-cid-c7vvptf6]{display:flex;flex-direction:column}@keyframes popUp{0%{transform:scale(.7);opacity:0}50%{transform:scale(1);opacity:1}to{transform:scale(.7);opacity:0}}@keyframes talk{0%{gap:0}60%{gap:10px}70%{gap:0}to{gap:0}}.animate[data-astro-cid-c7vvptf6] .aroken-head[data-astro-cid-c7vvptf6]{animation:popUp 1s ease-in-out forwards;animation:talk .5s ease-in-out infinite}.aroken-head[data-astro-cid-c7vvptf6] img[data-astro-cid-c7vvptf6]{width:400px;height:auto}
-</style></head> <body data-astro-cid-vtm4gazd> <!-- Casino Video Overlay --><div class="casino-overlay" id="casino-overlay" data-astro-cid-wilwo547> <div class="casino-video-container" data-astro-cid-wilwo547> <video id="casino-video" data-astro-cid-wilwo547> <source src="/src/assets/casino.webm" type="video/webm" data-astro-cid-wilwo547>
+<!DOCTYPE html><html lang="en" data-astro-cid-vtm4gazd> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/aroken_event/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.15.5"><title>Platform aroken.ru</title><link rel="stylesheet" href="/aroken_event/_astro/learnAroken.gXjgCYUc.css">
+<link rel="stylesheet" href="/aroken_event/_astro/platformAroken.B6EcMyhG.css"></head> <body data-astro-cid-vtm4gazd> <!-- Casino Video Overlay --><div class="casino-overlay" id="casino-overlay" data-astro-cid-wilwo547> <div class="casino-video-container" data-astro-cid-wilwo547> <video id="casino-video" data-astro-cid-wilwo547> <source src="/aroken_event/casino.webm" type="video/webm" data-astro-cid-wilwo547>
 Your browser does not support the video tag.
 </video> </div> </div>  <script type="module">function t(){const e=document.getElementById("casino-overlay"),d=document.getElementById("casino-video");!e||!d||(e.classList.add("active"),document.body.style.overflow="hidden",d.play().catch(n=>{console.error("Error playing video:",n)}))}function o(){const e=document.getElementById("casino-video");e&&("requestIdleCallback"in window?requestIdleCallback(()=>{e.preload="auto"},{timeout:5e3}):setTimeout(()=>{e.preload="auto"},5e3))}window.showCasinoVideo=t;window.preloadCasinoVideo=o;window.addEventListener("casino-video-trigger",()=>{t()});document.addEventListener("astro:page-load",()=>{o()});document.readyState==="complete"?o():document.addEventListener("DOMContentLoaded",()=>{o()});</script> <div class="container" data-astro-cid-vtm4gazd> <header data-astro-cid-6inwg52f> <svg width="60" height="60" viewBox="0 0 60 60" fill="none" data-astro-cid-6inwg52f="true">
 <g clip-path="url(#clip0_18_218)">
@@ -34,4 +32,479 @@ Your browser does not support the video tag.
 Найдено <span id="letter-count" data-astro-cid-4bhrnjbr>0</span>/14
 </div> <div class="letter-input-group" data-astro-cid-4bhrnjbr> <input type="text" id="letter-input" class="letter-input" placeholder="Введите букву" maxlength="1" data-astro-cid-4bhrnjbr> </div> <div class="letter-message" id="letter-message" data-astro-cid-4bhrnjbr></div> <div class="letter-sequence" data-astro-cid-4bhrnjbr> <div class="letter-sequence-label" data-astro-cid-4bhrnjbr>Найденные буквы:</div> <div class="letter-sequence-display" id="letter-sequence-display" data-astro-cid-4bhrnjbr>
 * * * * * * * * * * * * * *
-</div> </div> <button class="letter-reset-btn" id="reset-btn" data-astro-cid-4bhrnjbr>Сбросить</button> </div> </div> </div> </div>  <script type="module" src="/aroken_event/_astro/LetterGame.astro_astro_type_script_index_0_lang.WdLnCPOC.js"></script> </div>  </div> <footer class="footer" data-astro-cid-kochgqzx> <div class="container" data-astro-cid-kochgqzx> <p data-astro-cid-kochgqzx>Разработано командой AROKEN.RU</p> </div> </footer>  <div class="speaker-overlay" data-astro-cid-vtm4gazd> <div id="aroken-container" class="aroken-container hidden" data-astro-cid-c7vvptf6> <div class="aroken-head" data-astro-cid-c7vvptf6> <img src="/aroken_event/_astro/aroken-part1.DykFkSHU_1RPOf4.webp" alt="Aroken Part 1" data-astro-cid-c7vvptf6="true" loading="lazy" decoding="async" fetchpriority="auto" width="225" height="113"> <img src="/aroken_event/_astro/aroken-part2.BDo2C3-N_1gsLqI.webp" alt="Aroken Part 2" data-astro-cid-c7vvptf6="true" loading="lazy" decoding="async" fetchpriority="auto" width="225" height="108"> </div> </div> <script type="module">const e=document.getElementById("aroken-container");window.addEventListener("aroken-trigger",a=>{if(!e)return;const o=a,{audioPath:n="/arokencore.wav",duration:i=3e3}=o.detail||{};e.classList.remove("hidden"),e.classList.add("animate");const s=window.hasAudioConsent?.()??!0;if(n&&s){const t=new Audio(n);t.currentTime=0,t.play().catch(d=>console.warn("Audio play failed:",d))}setTimeout(()=>{e.classList.remove("animate"),e.classList.add("hidden")},i)});</script>  <button data-speak-1 data-astro-cid-vtm4gazd>ПОГОВОРИТЬ С АРОКЕНОМ</button> <p data-subtitles class="text" data-astro-cid-vtm4gazd></p> </div>  <script type="module" src="/aroken_event/_astro/platformAroken.astro_astro_type_script_index_0_lang.CNqZU6Ad.js"></script></body></html>
+</div> </div> <button class="letter-reset-btn" id="reset-btn" data-astro-cid-4bhrnjbr>Сбросить</button> </div> </div> </div> </div>  <script>(function(){const baseUrl = "/aroken_event/";
+
+  // Правильная последовательность (14 символов)
+  const TARGET_SEQUENCE = "AROKENFIBERSON"
+  const STORAGE_KEY = "letter_game_progress"
+  const COUNT_STORAGE_KEY = "letter_game_count"
+
+  let closeHandler: ((e: Event) => void) | null = null
+
+  function initLetterGame() {
+    const btn = document.querySelector("[data-letter-btn]")
+    const dropdown = document.querySelector("[data-letter-dropdown]")
+    const input = document.getElementById(
+      "letter-input",
+    ) as HTMLInputElement | null
+    const message = document.getElementById("letter-message")
+    const count = document.getElementById("letter-count")
+    const sequenceDisplay = document.getElementById("letter-sequence-display")
+    const resetBtn = document.getElementById("reset-btn")
+
+    if (
+      !btn ||
+      !dropdown ||
+      !input ||
+      !message ||
+      !count ||
+      !sequenceDisplay ||
+      !resetBtn
+    ) {
+      return
+    }
+
+    let foundLetters: string[] = [] // Массив найденных букв
+
+    // Загрузка прогресса из localStorage
+    function loadProgress() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY)
+        if (saved) {
+          const data = JSON.parse(saved)
+          foundLetters = data.foundLetters || []
+          updateDisplay()
+        }
+      } catch (e) {
+        console.error("Ошибка загрузки прогресса:", e)
+        foundLetters = []
+      }
+    }
+
+    // Сохранение прогресса в localStorage
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ foundLetters }))
+        localStorage.setItem(COUNT_STORAGE_KEY, foundLetters.length.toString())
+      } catch (e) {
+        console.error("Ошибка сохранения прогресса:", e)
+      }
+    }
+
+    // Подсчет оставшихся символов в целевой последовательности
+    function getRemainingChars() {
+      const remaining: Record<string, number> = {}
+      for (let char of TARGET_SEQUENCE) {
+        remaining[char] = (remaining[char] || 0) + 1
+      }
+      for (let char of foundLetters) {
+        if (remaining[char]) {
+          remaining[char]--
+        }
+      }
+      return remaining
+    }
+
+    // Обновление отображения
+    function updateDisplay() {
+      if (!count || !sequenceDisplay || !input) return
+
+      count.textContent = foundLetters.length.toString()
+
+      // Формируем строку для отображения
+      const displayParts: string[] = []
+      const tempFound = [...foundLetters]
+
+      for (let i = 0; i < TARGET_SEQUENCE.length; i++) {
+        const char = TARGET_SEQUENCE[i]
+        const index = tempFound.indexOf(char)
+
+        if (index !== -1) {
+          displayParts.push(char)
+          tempFound.splice(index, 1)
+        } else {
+          displayParts.push("*")
+        }
+      }
+
+      sequenceDisplay.textContent = displayParts.join(" ")
+
+      // Проверка на завершение
+      if (foundLetters.length >= TARGET_SEQUENCE.length) {
+        showMessage("🎉 Поздравляю! Вы собрали всю фразу!", "success")
+        input.disabled = true
+        // Trigger casino video
+        window.dispatchEvent(new CustomEvent("casino-video-trigger"))
+      }
+    }
+
+    // Показ сообщения
+    function showMessage(text: string, type: string) {
+      if (!message) return
+      message.textContent = text
+      message.className = "letter-message"
+      if (type) {
+        message.classList.add(type)
+      }
+    }
+
+    // Проверка введенного символа
+    function checkInput() {
+      if (!input) return
+
+      if (foundLetters.length >= TARGET_SEQUENCE.length) {
+        showMessage("Все буквы уже найдены!", "error")
+        return
+      }
+
+      const userInput = input.value
+
+      // Проверка на пробел
+      if (userInput === " " || userInput === "") {
+        const remaining = getRemainingChars()
+        if (remaining[" "] && remaining[" "] > 0) {
+          foundLetters.push(" ")
+          saveProgress()
+          updateDisplay()
+          showMessage("Правильно!", "success")
+          input.value = ""
+          return
+        } else {
+          showMessage("Неверно!", "error")
+          return
+        }
+      }
+
+      // Проверка буквы
+      const userChar = userInput.toUpperCase()
+
+      if (!userChar) {
+        showMessage("", "")
+        return
+      }
+
+      const remaining = getRemainingChars()
+
+      if (remaining[userChar] && remaining[userChar] > 0) {
+        foundLetters.push(userChar)
+        saveProgress()
+        updateDisplay()
+        showMessage("Правильно!", "success")
+        input.value = ""
+
+        // Check if player has found the required letters: A, R, O, K, E, N, F
+        const requiredLetters = ["A", "R", "O", "K", "E", "N", "F"]
+        const hasAllRequired = requiredLetters.every((letter) =>
+          foundLetters.includes(letter),
+        )
+
+        // Check if we haven't triggered this yet
+        const devtoolsTriggered = localStorage.getItem("devtools_triggered")
+
+        if (hasAllRequired && !devtoolsTriggered) {
+          // Mark as triggered so it doesn't repeat
+          localStorage.setItem("devtools_triggered", "true")
+
+          // Trigger Aroken with devtools.wav audio
+          const event = new CustomEvent("aroken-trigger", {
+            detail: {
+              audioPath: `${baseUrl}devtools.wav`,
+              duration: 10000, // 10 seconds for the audio to play
+              subtitles:
+                "брат, жопой чую что на видном месте больше ничего нет. Может, попробуем заглянуть поглубже? Куда обычный юзер бы никогда не залез, а если бы залез - сразу бы вышел",
+            },
+          })
+          window.dispatchEvent(event)
+        }
+
+        // Check if player has found 10 letters
+        const prefinalTriggered = localStorage.getItem("prefinal_triggered")
+
+        if (foundLetters.length === 9 && !prefinalTriggered) {
+          // Mark as triggered so it doesn't repeat
+          localStorage.setItem("prefinal_triggered", "true")
+
+          // Trigger Aroken with prefinal.wav audio
+          const event = new CustomEvent("aroken-trigger", {
+            detail: {
+              audioPath: `${baseUrl}prefinal.wav`,
+              duration: 23000, // 23 seconds for the audio to play
+              subtitles:
+                "Машина времени — это гипотетическое устройство или приспособление, предназначенное для путешествий во времени в прошлое или будущее, вопреки его естественному однонаправленному течению. Разумеется, машины времени не существует, но я чувствую, что ты все таки можешь откатиться назад.. в этом месте всплакнут старые ученики, а новые даже не поймут о чем речь..",
+            },
+          })
+          window.dispatchEvent(event)
+        }
+      } else {
+        showMessage("Неверно!", "error")
+      }
+    }
+
+    // Сброс прогресса
+    function resetProgress() {
+      if (!input) return
+      if (confirm("Вы уверены, что хотите сбросить прогресс?")) {
+        foundLetters = []
+        saveProgress()
+        updateDisplay()
+        showMessage("", "")
+        input.disabled = false
+        input.value = ""
+        input.focus()
+        // Reset trigger flags
+        localStorage.removeItem("devtools_triggered")
+        localStorage.removeItem("prefinal_triggered")
+      }
+    }
+
+    // Закрытие других dropdown
+    function closeOtherDropdowns() {
+      const otherDropdowns = document.querySelectorAll(
+        "[data-notes-dropdown], [data-claude-dropdown], [data-binary-dropdown]",
+      )
+      otherDropdowns.forEach((otherDropdown) => {
+        otherDropdown.classList.remove("notes-dropdown--active")
+        otherDropdown.classList.remove("claude-dropdown--active")
+        otherDropdown.classList.remove("binary-dropdown--active")
+      })
+    }
+
+    // Переключение dropdown
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation()
+      const isActive = dropdown.classList.contains("letter-dropdown--active")
+      closeOtherDropdowns()
+
+      if (isActive) {
+        dropdown.classList.remove("letter-dropdown--active")
+      } else {
+        dropdown.classList.add("letter-dropdown--active")
+        input?.focus()
+      }
+    })
+
+    // Clean up old listener if exists
+    if (closeHandler) {
+      document.removeEventListener("click", closeHandler)
+    }
+
+    // Define new handler
+    closeHandler = (e: Event) => {
+      if (
+        !dropdown.contains(e.target as Node) &&
+        !btn.contains(e.target as Node)
+      ) {
+        dropdown.classList.remove("letter-dropdown--active")
+      }
+    }
+
+    // Add new listener
+    document.addEventListener("click", closeHandler)
+
+    // Обработчики ввода
+    input.addEventListener("input", checkInput)
+
+    // Кнопка сброса
+    resetBtn.addEventListener("click", resetProgress)
+
+    // Инициализация
+    loadProgress()
+  }
+
+  // Запуск при загрузке и навигации
+  document.addEventListener("astro:page-load", initLetterGame)
+  // Fallback for initial load if ViewTransitions not active or script runs late
+  if (document.readyState === "complete") {
+    initLetterGame()
+  } else {
+    document.addEventListener("DOMContentLoaded", initLetterGame)
+  }
+})();</script> </div>  </div> <footer class="footer" data-astro-cid-kochgqzx> <div class="container" data-astro-cid-kochgqzx> <p data-astro-cid-kochgqzx>Разработано командой AROKEN.RU</p> </div> </footer>  <div class="speaker-overlay" data-astro-cid-vtm4gazd> <div id="aroken-container" class="aroken-container hidden" data-astro-cid-c7vvptf6> <div class="aroken-head" data-astro-cid-c7vvptf6> <img src="/aroken_event/_astro/aroken-part1.DykFkSHU_1RPOf4.webp" alt="Aroken Part 1" data-astro-cid-c7vvptf6="true" loading="lazy" decoding="async" fetchpriority="auto" width="225" height="113"> <img src="/aroken_event/_astro/aroken-part2.BDo2C3-N_1gsLqI.webp" alt="Aroken Part 2" data-astro-cid-c7vvptf6="true" loading="lazy" decoding="async" fetchpriority="auto" width="225" height="108"> </div> </div> <script type="module">const e=document.getElementById("aroken-container");window.addEventListener("aroken-trigger",a=>{if(!e)return;const o=a,{audioPath:n="/arokencore.wav",duration:i=3e3}=o.detail||{};e.classList.remove("hidden"),e.classList.add("animate");const s=window.hasAudioConsent?.()??!0;if(n&&s){const t=new Audio(n);t.currentTime=0,t.play().catch(d=>console.warn("Audio play failed:",d))}setTimeout(()=>{e.classList.remove("animate"),e.classList.add("hidden")},i)});</script>  <button data-speak-1 data-astro-cid-vtm4gazd>ПОГОВОРИТЬ С АРОКЕНОМ</button> <p data-subtitles class="text" data-astro-cid-vtm4gazd></p> </div>  <script>(function(){const baseUrl = "/aroken_event/";
+
+  import { triggerAroken } from "../utils/arokenState"
+
+  const speakerOverlay = document.querySelector(".speaker-overlay")
+  const arokenContainer = document.getElementById("aroken-container")
+  const subtitlesElement = document.querySelector("p[data-subtitles]")
+
+  if (arokenContainer) {
+    arokenContainer.classList.remove("hidden")
+  }
+
+  function typeWriter(text: string, duration: number) {
+    if (!subtitlesElement) return
+
+    subtitlesElement.textContent = ""
+    const totalChars = text.length
+    const interval = (duration - 100) / totalChars
+
+    let charIndex = 0
+    let wordsOnPage = 0
+
+    const timer = setInterval(() => {
+      if (charIndex < totalChars) {
+        const char = text.charAt(charIndex)
+
+        // Check if we are starting a new word (space or start)
+        if (char === " ") {
+          wordsOnPage++
+        }
+
+        // Check limits: 15 words OR visual overflow
+        // We check overflow AFTER adding, but we can also check word limit BEFORE
+        if (wordsOnPage >= 15) {
+          subtitlesElement.textContent = ""
+          wordsOnPage = 0
+          charIndex++ // Skip the space that triggered the new page
+          return
+        }
+
+        subtitlesElement.textContent += char
+
+        // Check visual overflow immediately after adding
+        if (subtitlesElement.scrollHeight > subtitlesElement.clientHeight) {
+          subtitlesElement.textContent = char
+          wordsOnPage = 0 // Reset word count for new page
+        }
+
+        charIndex++
+      } else {
+        clearInterval(timer)
+      }
+    }, interval)
+
+    return timer
+  }
+
+  const button = document.querySelector("button[data-speak-1]")
+  if (button) {
+    button.addEventListener("click", () => {
+      const text1 =
+        "Привет на связи Максим! В этой игре твоя задача найти 14 кодов, спрятанных в абсолютно разных местах карты. Лэтс гоу познакомимся с полигоном!"
+      const text2 =
+        "Сейчас ты возможно в легком шоке, но это действительно платформа арокен ру! Обрати внимание, что любые отличия с оригиналом, скорее всего, являются подсказкой. И да, сидеть проверять пиксель перфект тебе не нужно ахаха, отличия видны на глаз. Обрати внимания на кнопки справа. Первая из них это клод, если прям совсем жопа и не понимаешь куда копать, можешь обратиться туда. Следующая это конвертер кодов в буквы, он тебе очень пригодится. Сразу после конвертации кода жми на следующую кнопку и вводи букву. Сразу дам небольшую подсказку, почти все что здесь можно потыкать (а здесь много чего можно потыкать) скорее всего ведет к коду. Не смею продолжать оттягивать яйца за кота, приятной игры!"
+
+      triggerAroken({
+        audioPath: `${baseUrl}hello.wav`,
+        duration: 11600,
+      })
+
+      typeWriter(text1, 11600)
+
+      button.classList.add("hidden")
+      setTimeout(() => {
+        speakerOverlay?.classList.add("transparent")
+        subtitlesElement?.classList.add("hidden")
+
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, 11400)
+
+      setTimeout(() => {
+        subtitlesElement?.classList.remove("hidden")
+        triggerAroken({
+          audioPath: `${baseUrl}introduction.wav`,
+          duration: 52000,
+        })
+        typeWriter(text2, 52000)
+      }, 16600)
+
+      setTimeout(() => {
+        speakerOverlay?.classList.add("hidden")
+        subtitlesElement?.classList.add("hidden")
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, 68600)
+    })
+  }
+
+  // Listen for hint usage milestones
+  const HINTS_COUNT_KEY = "claude_hints_count"
+  const triggeredMilestones = new Set<number>()
+
+  window.addEventListener("hint-used", ((event: CustomEvent) => {
+    const count = event.detail.count
+
+    // Check milestones: 3, 7, 10
+    if (
+      (count === 3 || count === 7 || count === 10) &&
+      !triggeredMilestones.has(count)
+    ) {
+      triggeredMilestones.add(count)
+
+      // Show overlay and subtitles
+      speakerOverlay?.classList.remove("hidden")
+      speakerOverlay?.classList.remove("transparent")
+      subtitlesElement?.classList.remove("hidden")
+
+      // Milestone texts
+      const milestoneTexts: Record<number, string> = {
+        3: "да хватит уже списывать чел",
+        7: "да хватит уже списывать чел",
+        10: "слишком много заюзал подсказок",
+      }
+
+      const text = milestoneTexts[count] || "Продолжай!"
+
+      // Different duration for different hints
+      const duration = count === 10 ? 2000 : 2000
+
+      // Different audio for 10th hint
+      const audioPath =
+        count === 10 ? `${baseUrl}finalHint.wav` : `${baseUrl}hints.wav`
+
+      // Trigger Aroken audio and animation
+      triggerAroken({
+        audioPath: audioPath,
+        duration: duration,
+      })
+
+      typeWriter(text, duration)
+
+      // Hide overlay after audio finishes
+      setTimeout(() => {
+        speakerOverlay?.classList.add("hidden")
+        subtitlesElement?.classList.add("hidden")
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, duration)
+    }
+  }) as EventListener)
+
+  // Check on page load if we need to mark milestones as already triggered
+  try {
+    const savedCount = localStorage.getItem(HINTS_COUNT_KEY)
+    if (savedCount) {
+      const count = parseInt(savedCount, 10) || 0
+      // Mark all milestones up to current count as triggered
+      if (count >= 3) triggeredMilestones.add(3)
+      if (count >= 7) triggeredMilestones.add(7)
+      if (count >= 10) triggeredMilestones.add(10)
+    }
+  } catch (e) {
+    console.error("Error loading hint count:", e)
+  }
+
+  // Listen for letter milestone events (devtools.wav and prefinal.wav)
+  window.addEventListener("aroken-trigger", ((event: CustomEvent) => {
+    const { audioPath, duration, subtitles } = event.detail || {}
+
+    // Check if this is the devtools.wav trigger (required letters found) or prefinal.wav (10 letters found)
+    if (
+      (audioPath === "/devtools.wav" || audioPath === "/prefinal.wav") &&
+      subtitles
+    ) {
+      // Show overlay and subtitles
+      speakerOverlay?.classList.remove("hidden")
+      speakerOverlay?.classList.remove("transparent")
+      subtitlesElement?.classList.remove("hidden")
+
+      // Type out the subtitles
+      typeWriter(subtitles, duration)
+
+      // Hide overlay after audio finishes
+      setTimeout(() => {
+        speakerOverlay?.classList.add("hidden")
+        subtitlesElement?.classList.add("hidden")
+        if (subtitlesElement) subtitlesElement.textContent = ""
+      }, duration)
+    }
+  }) as EventListener)
+})();</script></body></html>
