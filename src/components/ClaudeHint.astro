@@ -372,13 +372,14 @@
     if (!btn || !dropdown || !askBtn || !nextBtn || !messages) return
 
     // State to track which hints from the filtered list we have shown in this session
-    let shownHintKeys: string[] = []
 
     // Load hint count from localStorage
     let hintCount = 0
     try {
       const savedCount = localStorage.getItem(HINTS_COUNT_KEY)
-      if (savedCount) {
+      if (savedCount === null) {
+        localStorage.setItem(HINTS_COUNT_KEY, "0")
+      } else {
         hintCount = parseInt(savedCount, 10) || 0
       }
     } catch (e) {
@@ -527,65 +528,34 @@
       })
     }
 
-    // Получить список индексов (1-based) НЕ угаданных букв
-    function getUnsolvedIndices(): string[] {
-      let foundLetters: string[] = []
+    // Показать подсказку
+    async function showHint() {
+      // Calculate how many letters are found
+      let foundCount = 0
       try {
         const saved = localStorage.getItem(STORAGE_KEY)
         if (saved) {
           const data = JSON.parse(saved)
-          foundLetters = data.foundLetters || []
+          foundCount = (data.foundLetters || []).length
         }
       } catch (e) {
         console.error("Error loading progress:", e)
       }
 
-      const unsolvedIndices: string[] = []
-      const tempFound = [...foundLetters]
+      // Logic: if 9 letters found, we need hint for the 10th letter.
+      const nextHintKey = (foundCount + 1).toString()
+      const hasHint = !!HINTS[nextHintKey]
 
-      for (let i = 0; i < TARGET_SEQUENCE.length; i++) {
-        const char = TARGET_SEQUENCE[i]
-        const foundIndex = tempFound.indexOf(char)
-
-        if (foundIndex !== -1) {
-          // This letter is found
-          tempFound.splice(foundIndex, 1)
+      if (!hasHint) {
+        if (foundCount >= TARGET_SEQUENCE.length) {
+          await showSending()
+          await showThinking()
+          await typeText("Ты уже нашел все буквы! Ты крут! 😎")
         } else {
-          // This letter is NOT found, add its 1-based index
-          unsolvedIndices.push((i + 1).toString())
-        }
-      }
-      return unsolvedIndices
-    }
-
-    // Показать подсказку
-    async function showHint() {
-      const unsolvedIndices = getUnsolvedIndices()
-
-      // Filter hints that are for unsolved letters AND exist in HINTS object
-      const availableHintKeys = unsolvedIndices.filter((key) => HINTS[key])
-
-      // Find the first available hint key that hasn't been shown yet in this session
-      // If all available have been shown, maybe show the last one or reset?
-      // Let's just pick the first one we haven't shown.
-      const nextHintKey = availableHintKeys.find(
-        (key) => !shownHintKeys.includes(key),
-      )
-
-      if (!nextHintKey) {
-        // No more hints available (either all solved or all hints shown)
-        if (availableHintKeys.length === 0) {
           await showSending()
           await showThinking()
           await typeText(
-            "Ты уже нашел все буквы, для которых у меня есть подсказки! Ты крут! 😎",
-          )
-        } else {
-          // All available hints shown
-          await showSending()
-          await showThinking()
-          await typeText(
-            "У меня пока нет новых подсказок для оставшихся букв. Попробуй поискать сам!",
+            "У меня пока нет подсказки для этого этапа. Попробуй поискать сам!",
           )
         }
 
@@ -603,8 +573,6 @@
       await showSending()
       await showThinking()
       await typeText(HINTS[nextHintKey])
-
-      shownHintKeys.push(nextHintKey)
 
       // Increment and save hint count
       hintCount++
@@ -627,24 +595,14 @@
         return
       }
 
-      // Check if there are more hints available
-      const remainingHints = availableHintKeys.filter(
-        (key) => !shownHintKeys.includes(key),
-      )
-
-      if (remainingHints.length > 0) {
-        if (nextBtn) {
-          nextBtn.style.display = "block"
-          nextBtn.disabled = false
-        }
-        if (askBtn) askBtn.style.display = "none"
-      } else {
-        if (askBtn) askBtn.disabled = true
-        if (nextBtn) {
-          nextBtn.disabled = true
-          nextBtn.style.display = "none"
-        }
-        if (askBtn) askBtn.style.display = "block"
+      // Hide next button as we are state-based now
+      if (nextBtn) {
+        nextBtn.style.display = "none"
+      }
+      // Keep ask button visible and enabled
+      if (askBtn) {
+        askBtn.style.display = "block"
+        askBtn.disabled = false
       }
     }
 
