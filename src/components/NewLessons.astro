@@ -1,8 +1,8 @@
 ---
-import HandIcon from "../assets/icons/hand.svg";
-import CardIcon from "../assets/icons/card.svg";
-import WatchIcon from "../assets/icons/watch.svg";
-import LessonItem from "./lessons/LessonItem.astro";
+import HandIcon from "../assets/icons/hand.svg"
+import CardIcon from "../assets/icons/card.svg"
+import WatchIcon from "../assets/icons/watch.svg"
+import LessonItem from "./lessons/LessonItem.astro"
 ---
 
 <div class="wrapper">
@@ -1281,11 +1281,19 @@ import LessonItem from "./lessons/LessonItem.astro";
     <h3 class="right-title">
       Иногда подсказка спрятана там, где её не видно невооруженным взглядом… <br
       />
-      Попробуй заглянуть глубже, куда рядовой пользователь никогда бы не полез
+      (мысли) Хм, мне кажется, что здесь есть что-то еще помимо пустоты и этого непонятного
+      текста <br />
+      Может быть попробовать заглянуть глубже? Куда обычный пользователь не стал
+      бы лезть?
     </h3>
     <!-- псс, братан, у тебя есть непрочитанные уведомления, не будь тем самым противным челом, который был в сети "недавно" и причитай их наконец -->
-    <p data-poshalka-text="" class="ОТКРОЙ МЕНЯ БРО">
-      <!-- В этом теге точно должно что-то появиться, но для этого тебе нужно найти все доступные уроки. Не пытайся их найти сам, по карте разбросаны подсказки. Кстати, первая находится строчкой выше -->
+    <p
+      data-poshalka-text="ОТКРОЙ МЕНЯ БРО"
+      class="ОТКРОЙ МЕНЯ БРО"
+      id="ОТКРОЙ МЕНЯ БРО"
+      onclick="alert('ОТКРОЙ МЕНЯ БРО')"
+    >
+      <!-- В этом теге точно должно что-то появиться, но для этого тебе нужно найти все доступные уроки. Не пытайся их найти сам, по карте разбросаны подсказки. Кстати, первая находится двумя строчками выше -->
     </p>
   </div>
 </div>
@@ -1373,7 +1381,7 @@ import LessonItem from "./lessons/LessonItem.astro";
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.25rem;
     max-height: 400px;
     overflow-y: scroll;
@@ -1417,36 +1425,36 @@ import LessonItem from "./lessons/LessonItem.astro";
 </style>
 <script>
   const buttons =
-    document.querySelectorAll<HTMLButtonElement>("[data-acc-header]");
+    document.querySelectorAll<HTMLButtonElement>("[data-acc-header]")
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const item = btn.closest(".acc-item") as HTMLElement | null;
-      const body = btn.nextElementSibling as HTMLElement | null;
+      const item = btn.closest(".acc-item") as HTMLElement | null
+      const body = btn.nextElementSibling as HTMLElement | null
 
-      if (!item || !body) return;
+      if (!item || !body) return
 
-      const isOpen = body.style.maxHeight && body.style.maxHeight !== "";
+      const isOpen = body.style.maxHeight && body.style.maxHeight !== ""
 
       if (isOpen) {
-        body.style.maxHeight = "";
-        item.classList.remove("active");
+        body.style.maxHeight = ""
+        item.classList.remove("active")
       } else {
-        body.style.maxHeight = "0px";
+        body.style.maxHeight = "0px"
         requestAnimationFrame(() => {
-          body.style.maxHeight = body.scrollHeight + "px";
-        });
-        item.classList.add("active");
+          body.style.maxHeight = body.scrollHeight + "px"
+        })
+        item.classList.add("active")
       }
-    });
-  });
+    })
+  })
 
   const poshalkos =
-    document.querySelectorAll<HTMLParagraphElement>("[data-poshalka]");
+    document.querySelectorAll<HTMLParagraphElement>("[data-poshalka]")
 
   const poshalkaText = document.querySelectorAll<HTMLElement>(
     "[data-poshalka-text]",
-  );
+  )
 
   const texts: Record<string, string> = {
     first:
@@ -1454,23 +1462,26 @@ import LessonItem from "./lessons/LessonItem.astro";
     second:
       "01100101 следующая посхалко в Как правильно решать конфликты с заказчиками",
     third: "01101110",
-  };
+  }
 
   poshalkos.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const key = btn.dataset.poshalka;
-      if (!key) return;
+      const audio = new Audio("/quick-camera-click.mp3")
+      audio.play()
 
-      const text = texts[key];
-      if (!text) return;
+      const key = btn.dataset.poshalka
+      if (!key) return
+
+      const text = texts[key]
+      if (!text) return
 
       poshalkaText.forEach((block) => {
-        block.innerHTML += `<p style="opacity: 0;">${text}</p>`;
-      });
-    });
-  });
+        block.innerHTML += `<p style="opacity: 0;">${text}</p>`
+      })
+    })
+  })
 
-  console.log("01101001");
+  console.log("01101001")
 
-  localStorage.setItem("POSHALKO", "01100010");
+  localStorage.setItem("POSHALKO", "01100010")
 </script>
