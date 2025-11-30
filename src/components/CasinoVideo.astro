@@ -63,6 +63,20 @@ import casinoVideo from "../assets/casino.webm"
     document.body.style.overflow = "hidden"
 
     // Play video with sound (user has already interacted with the page)
+    video.addEventListener(
+      "ended",
+      () => {
+        console.log("Video ended, clearing localStorage game progress")
+        localStorage.removeItem("letter_game_progress")
+        localStorage.removeItem("letter_game_count")
+        localStorage.removeItem("devtools_triggered")
+        localStorage.removeItem("prefinal_triggered")
+        // Optional: Remove the overlay or let the user close it?
+        // For now, we just clear the storage as requested.
+      },
+      { once: true },
+    )
+
     video
       .play()
       .then(() => {

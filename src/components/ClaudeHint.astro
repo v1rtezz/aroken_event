@@ -344,18 +344,60 @@
   const TARGET_SEQUENCE = "AROKENFIBERSON"
   const STORAGE_KEY = "letter_game_progress"
   const HINTS_COUNT_KEY = "claude_hints_count"
+  const HINT_LEVEL_KEY = "claude_hint_levels" // Stores hint levels for each letter
 
-  const HINTS: Record<string, string> = {
-    "1": "с такой аватаркой тебе ничего не светит здесь",
-    "2": "ощущение, будто ты все таки не до конца прошел курс.. Внимательно посмотри на скиллы и прогресс над ними",
-    "3": "есть еще одна кнопка на первом экране.. Нажми ее",
-    "4": "тебе случаем не пора запросить паузу? Успеешь курс пройти?",
-    "5": "Пролистай к урокам и посмотри код призыва заглянуть глубже",
-    "6": "Пролистай к урокам и посмотри код призыва заглянуть глубже",
-    "7": "Пролистай к урокам и посмотри код призыва заглянуть глубже",
-    "8": "Загляни поглубже, куда обычный юзер не залез бы НИКОГДА В ЖИЗНИ, но мы лазим часто",
-    "9": "Загляни поглубже, куда обычный юзер не залез бы НИКОГДА В ЖИЗНИ, но мы лазим часто",
-    "10": `Внимательно посмотри на URL. Машина времени — это гипотетическое устройство или приспособление, предназначенное для путешествий во времени в прошлое или будущее, вопреки его естественному однонаправленному течению. Разумеется, машины времени не существует, но я чувствую, что ты все таки можешь откатиться назад.. в этом месте всплакнут старые ученики, а новые даже не поймут о чем речь..`,
+  // 3-level hints per letter: [Level 1 (easy), Level 2 (medium), Level 3 (hard/direct)]
+  const HINTS: Record<string, [string, string, string]> = {
+    A: [
+      "с такой аватаркой тебе ничего не светит здесь",
+      "посмотри на свою аватарку внимательнее",
+      "нажми на свою аватарку в шапке сайта",
+    ],
+    R: [
+      "ощущение, будто ты все таки не до конца прошел курс.. Внимательно посмотри на скиллы и прогресс над ними",
+      "Ты можешь двигать ползунки скиллов, внимательно посмотри на прогресс над ними",
+      "Почему у 3 и 5 пункта написан минус? Может быть, это знак?",
+    ],
+    O: [
+      "есть еще одна кнопка на первом экране.. Найди ее",
+      "это находится в ачивках",
+      "Одну из ачивок можно прокликать",
+    ],
+    K: [
+      "Посмотри код текста, который справа от уроков",
+      "Кликни на урок, по которому пришло уведомление",
+      "Да сука ну нажми ты уже на этот урок и посмотри на <p> под текстом справа!!!!",
+    ],
+    E: [
+      "Подсказка есть в параграфе, где ты нашел букву К",
+      "Подсказка есть в параграфе, где ты нашел букву К",
+      "Подсказка есть в параграфе, где ты нашел букву К",
+    ],
+    N: [
+      "Подсказка есть в параграфе, где ты нашел букву К",
+      "Подсказка есть в параграфе, где ты нашел букву К",
+      "Подсказка есть в параграфе, где ты нашел букву К",
+    ],
+    F: [
+      "Тебе еще не пора запросить паузу? Когда там обучение заканчивается?",
+      "Посмотри на дату",
+      "Да сука дата это и есть код",
+    ],
+    I: [
+      "Загляни поглубже, куда обычный юзер не залез бы НИКОГДА В ЖИЗНИ, но мы лазим часто",
+      "это место где хранятся переменные браузера... Туда выводят Hello World фронтендеры",
+      "открой Console в DevTools и посмотри, что выводится",
+    ],
+    B: [
+      "Загляни поглубже, куда обычный юзер не залез бы НИКОГДА В ЖИЗНИ, но мы лазим часто",
+      "браузер может хранить данные... локально...",
+      "открой Application → Local Storage в DevTools и посмотри ключ 'POSHALKO'",
+    ],
+    S: [
+      `Внимательно посмотри на URL. Машина времени — это гипотетическое устройство или приспособление, предназначенное для путешествий во времени в прошлое или будущее, вопреки его естественному однонаправленному течению. Разумеется, машины времени не существует, но я чувствую, что ты все таки можешь откатиться назад.. в этом месте всплакнут старые ученики, а новые даже не поймут о чем речь..`,
+      "история... Старые ученикии.. Старая платформа",
+      "замени platformAroken на learnAroken в юрл...",
+    ],
   }
 
   function initClaude() {
@@ -394,6 +436,7 @@
       otherDropdowns.forEach((otherDropdown) => {
         otherDropdown.classList.remove("notes-dropdown--active")
         otherDropdown.classList.remove("binary-dropdown--active")
+        otherDropdown.classList.remove("letter-dropdown--active")
       })
     }
 
@@ -528,36 +571,78 @@
       })
     }
 
-    // Показать подсказку
-    async function showHint() {
-      // Calculate how many letters are found
-      let foundCount = 0
+    // Helper: Get hint levels from localStorage
+    function getHintLevels(): Record<string, number> {
       try {
-        const saved = localStorage.getItem(STORAGE_KEY)
+        const saved = localStorage.getItem(HINT_LEVEL_KEY)
         if (saved) {
-          const data = JSON.parse(saved)
-          foundCount = (data.foundLetters || []).length
+          return JSON.parse(saved)
         }
       } catch (e) {
-        console.error("Error loading progress:", e)
+        console.error("Error loading hint levels:", e)
       }
+      return {}
+    }
 
-      // Logic: if 9 letters found, we need hint for the 10th letter.
-      const nextHintKey = (foundCount + 1).toString()
-      const hasHint = !!HINTS[nextHintKey]
+    // Helper: Save hint levels to localStorage
+    function saveHintLevels(levels: Record<string, number>) {
+      try {
+        localStorage.setItem(HINT_LEVEL_KEY, JSON.stringify(levels))
+      } catch (e) {
+        console.error("Error saving hint levels:", e)
+      }
+    }
 
-      if (!hasHint) {
-        if (foundCount >= TARGET_SEQUENCE.length) {
-          await showSending()
-          await showThinking()
-          await typeText("Ты уже нашел все буквы! Ты крут! 😎")
-        } else {
-          await showSending()
-          await showThinking()
-          await typeText(
-            "У меня пока нет подсказки для этого этапа. Попробуй поискать сам!",
-          )
+    // Helper: Find first unguessed letter in TARGET_SEQUENCE
+    // Returns { letter, position } or null
+    function findFirstUnguessedLetter(): {
+      letter: string
+      position: number
+    } | null {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY)
+        let foundLetters: string[] = []
+
+        if (saved) {
+          const data = JSON.parse(saved)
+          foundLetters = data.foundLetters || []
         }
+
+        // Create a copy of foundLetters to track what we've matched
+        const remainingFound = [...foundLetters]
+
+        // Iterate through TARGET_SEQUENCE to find first missing letter
+        for (let i = 0; i < TARGET_SEQUENCE.length; i++) {
+          const targetLetter = TARGET_SEQUENCE[i]
+          const indexInFound = remainingFound.indexOf(targetLetter)
+
+          if (indexInFound === -1) {
+            // This letter hasn't been found yet - return it with position
+            return { letter: targetLetter, position: i }
+          } else {
+            // Mark this letter as matched by removing it
+            remainingFound.splice(indexInFound, 1)
+          }
+        }
+
+        // All letters found
+        return null
+      } catch (e) {
+        console.error("Error finding unguessed letter:", e)
+        return null
+      }
+    }
+
+    // Показать подсказку
+    async function showHint() {
+      // Find the first unguessed letter
+      const result = findFirstUnguessedLetter()
+
+      if (!result) {
+        // All letters found
+        await showSending()
+        await showThinking()
+        await typeText("Ты уже нашел все буквы! Ты крут! 😎")
 
         if (askBtn) askBtn.disabled = true
         if (nextBtn) {
@@ -567,14 +652,70 @@
         return
       }
 
+      const { letter: targetLetter, position: targetPosition } = result
+
+      // For positions after B (position 9+), use machine time hints
+      let letterHints: [string, string, string] | undefined
+      if (targetPosition >= 9) {
+        // Use machine time hints for E, R, S, O, N (positions 9-13)
+        letterHints = HINTS["S"]
+      } else {
+        letterHints = HINTS[targetLetter]
+      }
+
+      if (!letterHints) {
+        await showSending()
+        await showThinking()
+        await typeText(
+          `У меня пока нет подсказки для буквы. Попробуй поискать сам!`,
+        )
+
+        if (askBtn) askBtn.disabled = true
+        if (nextBtn) {
+          nextBtn.disabled = true
+          nextBtn.style.display = "none"
+        }
+        return
+      }
+
+      // Get current hint level for this letter/position (1, 2, or 3)
+      // Use position as key for letters after B to track them separately
+      const hintLevels = getHintLevels()
+      const hintKey =
+        targetPosition >= 9 ? `pos_${targetPosition}` : targetLetter
+      const currentLevel = hintLevels[hintKey] || 1
+
+      // Check if we've exceeded max level
+      if (currentLevel > 3) {
+        await showSending()
+        await showThinking()
+        await typeText(
+          `Ты уже использовал все 3 уровня подсказок для буквы. Попробуй найти её сам!`,
+        )
+
+        if (askBtn) askBtn.disabled = true
+        if (nextBtn) {
+          nextBtn.disabled = true
+          nextBtn.style.display = "none"
+        }
+        return
+      }
+
+      // Get the hint text for current level (0-indexed array)
+      const hintText = letterHints[currentLevel - 1]
+
       if (askBtn) askBtn.disabled = true
       if (nextBtn) nextBtn.disabled = true
 
       await showSending()
       await showThinking()
-      await typeText(HINTS[nextHintKey])
+      await typeText(hintText)
 
-      // Increment and save hint count
+      // Increment hint level for this letter/position
+      hintLevels[hintKey] = currentLevel + 1
+      saveHintLevels(hintLevels)
+
+      // Increment and save global hint count
       hintCount++
       localStorage.setItem(HINTS_COUNT_KEY, hintCount.toString())
 
@@ -595,14 +736,13 @@
         return
       }
 
-      // Hide next button as we are state-based now
-      if (nextBtn) {
-        nextBtn.style.display = "none"
-      }
-      // Keep ask button visible and enabled
+      // Re-enable ask button for next hint
       if (askBtn) {
         askBtn.style.display = "block"
         askBtn.disabled = false
+      }
+      if (nextBtn) {
+        nextBtn.style.display = "none"
       }
     }
 
